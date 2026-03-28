@@ -6,6 +6,7 @@ import { Manrope, Inter, Playwrite_IE } from "next/font/google";
 import UtilityBar from "@/components/layout/UtilityBar";
 import Navbar from "@/components/layout/Navbar";
 import HeaderHeightProvider from "@/components/layout/HeaderHeightProvider";
+import Footer from "@/components/layout/Footer";
 
 const manrope = Manrope({
   variable: "--font-sans-manrope",
@@ -29,8 +30,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${manrope.variable} ${inter.variable} ${playwriteIreland.variable} h-full antialiased`}
-        style={{ background: "#FCF8FF", color: "#4C4356" }}>
+      <body className={`${manrope.variable} ${inter.variable} ${playwriteIreland.variable} h-full antialiased`} style={{ background: "#FCF8FF", color: "#4C4356" }}>
         <HeaderHeightProvider>
           <UtilityBar />
           <Navbar />
@@ -38,6 +38,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <main className="pt-[var(--header-height)] my-12">
           {children}
         </main>
+        <Footer />
       </body>
     </html>
   );
