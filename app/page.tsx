@@ -1,65 +1,126 @@
-import Image from "next/image";
+import { LuArrowRight, LuBadgeCheck } from "react-icons/lu";
 
-export default function Home() {
+import Button from "@/components/ui/Button";
+import Image from "next/image";
+import Link from "next/link";
+
+import HeroImage from "@/public/hero-image.jpg";
+import CAHC from "@/public/CAHC.png";
+
+import ElderIcon from "@/public/icons/elder-icon.svg";
+import MedicalIcon from "@/public/icons/medical-icon.svg";
+import EducationIcon from "@/public/icons/education-icon.svg";
+import FocusIcon from "@/public/icons/focus-icon.svg";
+
+const services = [
+  {
+    icon: ElderIcon,
+    heading: "Personal Care Needs",
+    body: "Assistance with daily living activities while maintaining independence and comfort. (Bathing, grooming, personal hygiene, meal prep, and errands).",
+    badges: ["Daily Support"]
+  },
+  {
+    icon: MedicalIcon,
+    heading: "Support & Coverage",
+    body: "Flexible care options including companion and sitter services, live-in/out care, hospital bedside support, and respite care for families.",
+  },
+  {
+    icon: EducationIcon,
+    heading: "Educational Resources",
+    body: "Expert guidance on fall prevention, medication safety, infection control, and client rights through professional consultation.",
+  },
+  {
+    icon: FocusIcon,
+    heading: "Specialized Focus",
+    body: "Dedicated care for Alzheimer's, Dementia, ALS, Cancer, Stroke, and developmental disabilities with a focus on dignity.",
+  }
+]
+
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      {/* Hero section */}
+      <section className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto">
+        <div className="space-y-6">
+          <p className="text-tertiary uppercase font-bold tracking-widest text-xs text-center brightness-50">Inspired to care the majestic way</p>
+
+          <div className="space-y-10">
+            <h1 className="text-center text-2xl sm:text-4xl md:text-5xl font-extrabold font-manrope space-y-3">
+              <span className="block text-black">Providing quality home care with</span>
+              <span className="block text-black"><span className="text-primary font-ireland">love and compassion</span> by</span>
+              <span className="block text-black">experienced professionals.</span>
+            </h1>
+
+            <p className="text-center">Informed clients and caregivers make better decisions.</p>
+
+            <div className="w-full inline-flex items-center justify-center gap-2">
+              <Button size="auto">Download Brochure</Button>
+              <Button variant="outlined" size="auto" className="inline-flex justify-center items-center gap-2">
+                Get Your Free Consultation <LuArrowRight className="size-5" />
+              </Button>
+            </div>
+
+            <div className="relative">
+              <div className="flex justify-center items-center">
+                <Image src={HeroImage} alt="Professional home caregiver providing compassionate care to a client" className="rounded-xl shadow shadow-xl" />
+              </div>
+              <div className="absolute -bottom-10 right-0 bg-gray-100 shadow shadow-xl rounded-xl p-3 inline-flex justify-content items-center gap-4 text-sm">
+                <LuBadgeCheck className="bg-secondary text-gray-800/75 rounded-full size-12 p-2" />
+                <div>
+                  <p className="font-medium">Certified Care</p>
+                  <p className="opacity-75">Vetted Professionals Only</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Certificate section */}
+      <section style={{ background: "#F5F2FF" }} className="my-24 py-12">
+        <div className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto">
+          <div className="flex flex-col md:flex-row gap-12 items-center justify-center">
+            <Image src={CAHC} alt="Accreditation Commission for Health Care Certificate" className="h-[150px] w-auto" />
+            <div className="space-y-3">
+              <p className="text-tertiary uppercase font-bold tracking-widest text-xs brightness-50">Recognized and accredited by</p>
+              <h1 className="text-xl sm:text-2xl font-semibold text-black">Accredited by the Commission on Accreditation for Homecare</h1>
+              <p>As a member of CAHC we ensure that our agency delivers high-quality home care service by operating under the state of New Jersey’s regulations and guidelines.</p>
+            </div>
+          </div>
         </div>
-      </main>
-    </div>
-  );
+      </section>
+
+      {/* Services section */}
+      <section>
+        <div className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto">
+          <div className="space-y-4 sm:space-y-6">
+            <p className="text-tertiary uppercase font-bold tracking-widest text-xs brightness-50">Recognized and accredited by</p>
+            <h1 className="text-2xl sm:text-5xl font-semibold text-black">Services Tailored to Life</h1>
+            
+            <div className="flex flex-col gap-6">
+              <div className="flex justify-end items-center">
+                <Link href="/services" className="text-primary font-semibold inline-flex justify-center items-center gap-1">Explore All Services <LuArrowRight className="size-5" /></Link>
+              </div>
+              <div className="flex flex-wrap lg:flex-nowrap gap-4 justify-center">
+              
+                {services.map((service, index) => (
+                  <div key={`service-item-${index}`} className="bg-white space-y-6 p-6 rounded-xl">
+                    <Image src={service.icon} alt={service.heading} />
+                    <h2 className="text-black text-xl sm:text-2xl font-semibold">{service.heading}</h2>
+                    <p>{service.body}</p>
+                    <div>  
+                      {service.badges?.map((badge, index) => (
+                        <span key={`service-badge-item-${index}`} className="text-foreground bg-secondary/50 p-2 rounded-full px-6 text-xs font-bold">{badge}</span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  )
 }
