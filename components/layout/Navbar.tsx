@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect, startTransition } from "react";
 
 import Link from "next/link";
-import Logo from "@/public/logo.png";
+import Logo from "@/public/logo-edited.png";
 import Image from "next/image";
 import Button from "../ui/Button";
 
@@ -109,7 +109,7 @@ export default function Navbar() {
               <LuX className="size-5" aria-hidden="true" />
             </button>
           </div>
-          <div className="px-4 py-2">
+          <div className="px-4 py-2 flex justify-center items-center">
             <Link href="/" aria-label="Go to homepage">
               <Image src={Logo} className="h-[40px] w-auto" alt="A & J Majestic Care" />
             </Link>
