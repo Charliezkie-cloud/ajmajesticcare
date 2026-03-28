@@ -34,9 +34,9 @@ const services = [
     heading: "Specialized Focus",
     body: "Dedicated care for Alzheimer's, Dementia, ALS, Cancer, Stroke, and developmental disabilities with a focus on dignity.",
   }
-]
+];
 
-export default function HomePage() {
+export default async function HomePage() {
   return (
     <>
       {/* Hero section */}
@@ -44,8 +44,8 @@ export default function HomePage() {
         <div className="space-y-6">
           <p className="text-tertiary uppercase font-bold tracking-widest text-xs text-center brightness-50">Inspired to care the majestic way</p>
 
-          <div className="space-y-10">
-            <h1 className="text-center text-2xl sm:text-4xl md:text-5xl font-extrabold font-manrope space-y-3">
+          <div className="space-y-8 sm:space-y-10">
+            <h1 className="text-center text-2xl sm:text-4xl md:text-5xl font-extrabold font-manrope sm:space-y-3">
               <span className="block text-black">Providing quality home care with</span>
               <span className="block text-black"><span className="text-primary font-ireland">love and compassion</span> by</span>
               <span className="block text-black">experienced professionals.</span>
@@ -53,9 +53,9 @@ export default function HomePage() {
 
             <p className="text-center">Informed clients and caregivers make better decisions.</p>
 
-            <div className="w-full inline-flex items-center justify-center gap-2">
-              <Button size="auto">Download Brochure</Button>
-              <Button variant="outlined" size="auto" className="inline-flex justify-center items-center gap-2">
+            <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-2">
+              <Button size="auto" className="w-full sm:w-auto">Download Brochure</Button>
+              <Button variant="outlined" size="auto" className="inline-flex justify-center items-center gap-2 w-full sm:w-auto">
                 Get Your Free Consultation <LuArrowRight className="size-5" />
               </Button>
             </div>
@@ -64,7 +64,7 @@ export default function HomePage() {
               <div className="flex justify-center items-center">
                 <Image src={HeroImage} alt="Professional home caregiver providing compassionate care to a client" className="rounded-xl shadow shadow-xl" />
               </div>
-              <div className="absolute -bottom-10 right-0 bg-gray-100 shadow shadow-xl rounded-xl p-3 inline-flex justify-content items-center gap-4 text-sm">
+              <div className="absolute -bottom-10 right-0 bg-gray-100 shadow shadow-xl rounded-xl p-3 inline-flex justify-content items-center gap-4 text-xs sm:text-sm">
                 <LuBadgeCheck className="bg-secondary text-gray-800/75 rounded-full size-12 p-2" />
                 <div>
                   <p className="font-medium">Certified Care</p>
@@ -93,15 +93,15 @@ export default function HomePage() {
       {/* Services section */}
       <section>
         <div className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto">
-          <div className="space-y-4 sm:space-y-6">
+          <div className="space-y-3 sm:space-y-6">
             <p className="text-tertiary uppercase font-bold tracking-widest text-xs brightness-50">Recognized and accredited by</p>
             <h1 className="text-2xl sm:text-5xl font-semibold text-black">Services Tailored to Life</h1>
             
             <div className="flex flex-col gap-6">
               <div className="flex justify-end items-center">
-                <Link href="/services" className="text-primary font-semibold inline-flex justify-center items-center gap-1">Explore All Services <LuArrowRight className="size-5" /></Link>
+                <Link href="/services" className="transition hover:underline hover:underline-offset-8 text-primary font-semibold inline-flex justify-center items-center gap-1">Explore All Services <LuArrowRight className="size-5" /></Link>
               </div>
-              <div className="flex flex-wrap lg:flex-nowrap gap-4 justify-center">
+              <div className="grid grid-rows-4 grid-cols-0 sm:grid-rows-2 sm:grid-cols-2 lg:grid-rows-none lg:grid-cols-4 gap-4">
               
                 {services.map((service, index) => (
                   <div key={`service-item-${index}`} className="bg-white space-y-6 p-6 rounded-xl">
