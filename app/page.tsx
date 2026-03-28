@@ -1,4 +1,5 @@
 import { LuArrowRight, LuBadgeCheck } from "react-icons/lu";
+import { BsStarFill } from "react-icons/bs";
 
 import Button from "@/components/ui/Button";
 import Image from "next/image";
@@ -36,11 +37,20 @@ const services = [
   }
 ];
 
+const testimonial = {
+  rating: 5,
+  content: "&quot;We brought in A&amp;J to provide 24x7 care for my elderly father after an unfortunate incident with a prior caregiver. They moved very quickly to put together a full schedule of top quality caregivers. They have been flexible, responsive and have ensured coverage whenever there are changes in the schedule.&quot;",
+  author: {
+    name: "T. L.",
+    address: "Somewhere in New York"
+  }
+};
+
 export default async function HomePage() {
   return (
     <>
       {/* Hero section */}
-      <section className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto">
+      <section  className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto">
         <div className="space-y-6">
           <p className="text-tertiary uppercase font-bold tracking-widest text-xs text-center brightness-50">Inspired to care the majestic way</p>
 
@@ -77,48 +87,98 @@ export default async function HomePage() {
       </section>
 
       {/* Certificate section */}
-      <section style={{ background: "#F5F2FF" }} className="my-24 py-12">
+      <section id="certificate" style={{ background: "#F5F2FF" }} className="my-24 py-12" aria-label="Accreditation">
         <div className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto">
           <div className="flex flex-col md:flex-row gap-12 items-center justify-center">
-            <Image src={CAHC} alt="Accreditation Commission for Health Care Certificate" className="h-[150px] w-auto" />
+            <Image src={CAHC} alt="CAHC official accreditation certificate seal" className="h-[150px] w-auto" />
             <div className="space-y-3">
-              <p className="text-tertiary uppercase font-bold tracking-widest text-xs brightness-50">Recognized and accredited by</p>
-              <h1 className="text-xl sm:text-2xl font-semibold text-black">Accredited by the Commission on Accreditation for Homecare</h1>
-              <p>As a member of CAHC we ensure that our agency delivers high-quality home care service by operating under the state of New Jersey’s regulations and guidelines.</p>
+              <p className="text-tertiary uppercase font-bold tracking-widest text-xs brightness-50">
+                Recognized and accredited by
+              </p>
+              <h2 className="text-xl sm:text-2xl font-semibold text-black">
+                Accredited by the Commission on Accreditation for Homecare (CAHC)
+              </h2>
+              <p>
+                As a CAHC-accredited home care agency in New Jersey, we meet and exceed state regulations
+                to deliver safe, high-quality in-home care services to our patients and families.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Services section */}
-      <section>
+      <section id="services" aria-labelledby="services-heading">
         <div className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto">
           <div className="space-y-3 sm:space-y-6">
-            <p className="text-tertiary uppercase font-bold tracking-widest text-xs brightness-50">Recognized and accredited by</p>
-            <h1 className="text-2xl sm:text-5xl font-semibold text-black">Services Tailored to Life</h1>
-            
+            <p className="text-tertiary uppercase font-bold tracking-widest text-xs brightness-50">
+              Recognized and accredited by
+            </p>
+            <h2 id="services-heading" className="text-2xl sm:text-5xl font-semibold text-black">
+              Services Tailored to Life
+            </h2>
+
             <div className="flex flex-col gap-6">
               <div className="flex justify-end items-center">
-                <Link href="/services" className="transition hover:underline hover:underline-offset-8 text-primary font-semibold inline-flex justify-center items-center gap-1">Explore All Services <LuArrowRight className="size-5" /></Link>
+                <Link href="/services" className="transition hover:underline hover:underline-offset-8 text-primary font-semibold inline-flex justify-center items-center gap-1">
+                  Explore All Services <LuArrowRight className="size-5" aria-hidden="true" />
+                </Link>
               </div>
               <div className="grid grid-rows-4 grid-cols-0 sm:grid-rows-2 sm:grid-cols-2 lg:grid-rows-none lg:grid-cols-4 gap-4">
-              
+
                 {services.map((service, index) => (
                   <div key={`service-item-${index}`} className="bg-white space-y-6 p-6 rounded-xl">
-                    <Image src={service.icon} alt={service.heading} />
-                    <h2 className="text-black text-xl sm:text-2xl font-semibold">{service.heading}</h2>
+                    <Image src={service.icon} alt="" aria-hidden="true" />
+                    <h3 className="text-black text-xl sm:text-2xl font-semibold">{service.heading}</h3>
                     <p>{service.body}</p>
-                    <div>  
+                    <div>
                       {service.badges?.map((badge, index) => (
-                        <span key={`service-badge-item-${index}`} className="text-foreground bg-secondary/50 p-2 rounded-full px-6 text-xs font-bold">{badge}</span>
+                        <span key={`service-badge-item-${index}`} className="text-foreground bg-secondary/50 p-2 rounded-full px-6 text-xs font-bold">
+                          {badge}
+                        </span>
                       ))}
                     </div>
                   </div>
                 ))}
-              
+
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Testimonials section */}
+      <section id="testimonials" style={{ background: "#F5F2FF" }} className="my-24 py-12" aria-label="Customer testimonials" itemScope itemType="https://schema.org/Review">
+        <div className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto flex justify-center">
+
+          <div className="w-xl space-y-6">
+            {/* Star Rating — structured data for rich snippets */}
+            <div className="inline-flex gap-2" aria-label="5 out of 5 stars" itemScope itemType="https://schema.org/Rating" itemProp="reviewRating" role="img">
+              <meta itemProp="ratingValue" content="5" />
+              <meta itemProp="bestRating" content="5" />
+              <meta itemProp="worstRating" content="1" />
+              {Array.from({ length: testimonial.rating }).map((_, i) => (
+                <BsStarFill key={i} className="size-5 text-yellow-400" aria-hidden="true" />
+              ))}
+            </div>
+
+            {/* Review body */}
+            <blockquote className="text-xl sm:text-2xl font-semibold text-black" itemProp="reviewBody">{testimonial.content}</blockquote>
+
+            {/* Author */}
+            <div className="flex flex-row gap-4" itemScope itemType="https://schema.org/Person" itemProp="author">
+              <div className="flex items-center justify-center">
+                <div className="w-10 text-primary">
+                  <span className="block h-0.5 bg-primary" aria-hidden="true" />
+                </div>
+              </div>
+              <div>
+                <p className="font-semibold text-lg sm:text-xl" itemProp="name">{testimonial.author.name}</p>
+                <p itemProp="address">{testimonial.author.address}</p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
     </>
