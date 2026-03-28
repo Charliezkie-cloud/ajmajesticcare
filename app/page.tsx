@@ -1,4 +1,4 @@
-import { LuArrowRight, LuBadgeCheck } from "react-icons/lu";
+import { LuArrowRight, LuBadgeCheck, LuCircleCheck } from "react-icons/lu";
 import { BsStarFill } from "react-icons/bs";
 
 import Button from "@/components/ui/Button";
@@ -50,7 +50,7 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero section */}
-      <section  className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto">
+      <section id="hero" aria-labelledby="hero-heading" className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto">
         <div className="space-y-6">
           <p className="text-tertiary uppercase font-bold tracking-widest text-xs text-center brightness-50">Inspired to care the majestic way</p>
 
@@ -163,7 +163,7 @@ export default async function HomePage() {
             </div>
 
             {/* Review body */}
-            <blockquote className="text-xl sm:text-2xl font-semibold text-black" itemProp="reviewBody">{testimonial.content}</blockquote>
+            <blockquote className="font-manrope text-xl sm:text-2xl font-bold text-black" itemProp="reviewBody">{testimonial.content}</blockquote>
 
             {/* Author */}
             <div className="flex flex-row gap-4" itemScope itemType="https://schema.org/Person" itemProp="author">
@@ -179,6 +179,36 @@ export default async function HomePage() {
             </div>
           </div>
 
+        </div>
+      </section>
+
+      {/* Final CTA section */}
+      <section id="final-cta" aria-label="Book a free consultation" className="my-24 py-12">
+        <div className="max-w-6xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto">
+          <div className="flex items-center justify-center">
+            <div className="bg-primary text-gray-200 rounded-xl shadow shadow-2xl w-full flex flex-col gap-8 justify-center items-center p-12">
+
+              <h2 className="text-white text-center text-2xl sm:text-4xl font-bold text-manrope">
+                Ready to find the right care?
+              </h2>
+              <p className="text-center">
+                Schedule your no-obligation consultation today and let us create a personalized senior care plan for your loved one — at no cost to you.
+              </p>
+              <Link href="/contact" title="Book a free senior care consultation &mdash; no hidden fees" className="transition bg-gray-100 hover:bg-gray-200 active:bg-gray-300 text-sm sm:text-md text-primary font-semibold px-6 py-4 rounded-lg shadow shadow-xl">
+                Book Your Free Consultation
+              </Link>
+
+              <div className="flex flex-wrap justify-center items-center gap-4">
+                <span className="inline-flex items-center justify-center gap-1 text-sm">
+                  <LuCircleCheck className="size-5" /> No hidden fees
+                </span>
+                <span className="inline-flex items-center justify-center gap-1 text-sm">
+                  <LuCircleCheck className="size-5" /> Free care assessment
+                </span>
+              </div>
+
+            </div>
+          </div>
         </div>
       </section>
     </>
