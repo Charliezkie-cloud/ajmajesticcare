@@ -10,7 +10,7 @@ export default function AboutUsPage() {
     <>
     
       {/* Hero section */}
-      <section id="hero" aria-labelledby="hero-heading" className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto">
+      <section id="hero" aria-labelledby="hero-heading" className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto py-4 sm:py-8 md:py-12 lg:py-16">
         <div className="flex flex-col md:grid md:grid-cols-2 items-center gap-6 md:gap-12">
           <div className="space-y-6">
             <p className="text-tertiary uppercase font-bold tracking-widest text-xs brightness-50">Our Legacy</p>

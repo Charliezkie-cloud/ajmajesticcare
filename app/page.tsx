@@ -50,7 +50,7 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero section */}
-      <section id="hero" aria-labelledby="hero-heading" className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto">
+      <section id="hero" aria-labelledby="hero-heading" className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto py-4 sm:py-8 md:py-12 lg:py-16">
         <div className="space-y-6">
           <p className="text-tertiary uppercase font-bold tracking-widest text-xs text-center brightness-50">Inspired to care the majestic way</p>
 
@@ -114,7 +114,7 @@ export default async function HomePage() {
             <p className="text-tertiary uppercase font-bold tracking-widest text-xs brightness-50">
               Recognized and accredited by
             </p>
-            <h2 id="services-heading" className="text-2xl sm:text-5xl font-semibold text-black">
+            <h2 id="services-heading" className="text-2xl sm:text-4xl md:text-5xl font-semibold text-black">
               Services Tailored to Life
             </h2>
 
@@ -186,7 +186,7 @@ export default async function HomePage() {
       <section id="final-cta" aria-label="Book a free consultation" className="my-24 py-12">
         <div className="max-w-6xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto">
           <div className="flex items-center justify-center">
-            <div className="bg-primary text-gray-200 rounded-xl shadow shadow-2xl w-full flex flex-col gap-8 justify-center items-center p-12">
+            <div className="bg-primary text-gray-200 rounded-4xl shadow shadow-2xl w-full flex flex-col gap-8 justify-center items-center p-12">
 
               <h2 className="text-white text-center text-2xl sm:text-4xl font-bold text-manrope">
                 Ready to find the right care?
