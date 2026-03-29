@@ -3,6 +3,7 @@ import { LuMapPin } from "react-icons/lu";
 import GoogleMap from "@/components/GoogleMap";
 import AboutUsImage from "@/public/about-us-image.jpg";
 import Image from "next/image";
+import FinalCTASection from "@/components/layout/FinalCTASection";
 
 export default function AboutUsPage() {
   return (
@@ -98,7 +99,8 @@ export default function AboutUsPage() {
           </div>
         </div>
       </section>
-    
+
+      <FinalCTASection />
     </>
   )
 }
