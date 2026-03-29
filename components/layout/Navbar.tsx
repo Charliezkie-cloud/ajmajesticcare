@@ -68,7 +68,7 @@ export default function Navbar() {
 
               return (
                 <li key={`link-item-${index}`} className="relative group">
-                  <Link href={item.href} aria-haspopup="true" aria-current={isActive ? "page" : undefined} className="inline-flex items-center justify-center gap-1 transition hover:text-secondary">
+                  <Link href={item.href} aria-haspopup="true" aria-current={isActive ? "page" : undefined} className={`inline-flex items-center justify-center gap-1 transition ${isActive ? "text-primary underline underline-offset-6" : ""} hover:text-secondary`}>
                     {item.label} <LuChevronDown className="size-4 transition-transform group-hover:rotate-180" aria-hidden="true" />
                   </Link>
 
