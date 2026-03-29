@@ -1,3 +1,6 @@
+import { LuMapPin } from "react-icons/lu";
+
+import GoogleMap from "@/components/GoogleMap";
 import AboutUsImage from "@/public/about-us-image.jpg";
 import Image from "next/image";
 
@@ -9,8 +12,8 @@ export default function AboutUsPage() {
       <section id="hero" aria-labelledby="hero-heading" className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto">
         <div className="flex flex-col md:grid md:grid-cols-2 items-center gap-6 md:gap-12">
           <div className="space-y-6">
-            <span className="text-tertiary uppercase font-bold tracking-widest text-xs brightness-50">Our Legacy</span>
-            <h1 id="hero-heading" className="text-4xl md:text-6xl font-manrope font-extrabold text-black">
+            <p className="text-tertiary uppercase font-bold tracking-widest text-xs brightness-50">Our Legacy</p>
+            <h1 id="hero-heading" className="text-4xl sm:text-6xl font-manrope font-extrabold text-black">
               About Us
             </h1>
             <p>
@@ -59,6 +62,39 @@ export default function AboutUsPage() {
               <p>Our mission is to collaborate with our client and family health care service, in a self-directed way that respects their individuality, faith and values. We seek to coordinate the highest quality of care by reaching out to clients and their families for their physical, emotional, social, and spiritual needs during illness or other life changes.</p>
               <p>We also seek to create connections through social media to educate and guide communities on the importance of quality care for a better life among adults, aging clients and caregivers alike.</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Locations section */}
+      <section id="locations" className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto" aria-label="A&J Majestic Care service areas in New Jersey" itemScope itemType="https://schema.org/LocalBusiness">
+        <meta itemProp="name" content="A&J Majestic Care" />
+        <meta itemProp="areaServed" content="Union, Middlesex, Morris, Sussex, Warren, Essex, Bergen Counties, New Jersey" />
+
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-12">
+          <div className="space-y-5">
+            <p className="text-tertiary uppercase font-bold tracking-widest text-xs brightness-50">Where we serve</p>
+            <h2 className="font-manrope font-extrabold text-2xl sm:text-4xl text-black">
+              Home Care Services in New Jersey
+            </h2>
+            <p>
+              A&J Majestic Care provides services in Union, Middlesex, Morris, Sussex, Warren, Essex, Bergen Counties or 50 miles from home location (New Providence, NJ).
+            </p>
+
+            <address className="bg-primary/10 border-gray-200 p-6 rounded-xl flex flex-row items-center gap-4 not-italic" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+              <LuMapPin className="text-primary size-7" aria-hidden="true" />
+              <div>
+                <h3 className="font-manrope font-bold text-lg sm:text-xl text-black">Home Office</h3>
+                <p>
+                  <span itemProp="addressLocality">New Providence</span>,{" "}
+                  <span itemProp="addressRegion">NJ</span>
+                </p>
+              </div>
+            </address>
+          </div>
+
+          <div>
+            <GoogleMap />
           </div>
         </div>
       </section>
