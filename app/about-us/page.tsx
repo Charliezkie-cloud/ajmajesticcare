@@ -40,6 +40,28 @@ export default function AboutUsPage() {
           </div>
         </div>
       </section>
+
+      {/* Mission section */}
+      <section id="mission" className="bg-[#F5F2FF] my-24 py-12">
+        <div className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto">
+          <div className="flex flex-col sm:grid sm:grid-cols-3 gap-6">
+            <div className="flex flex-col gap-4">
+              <h2 className="font-manrope font-extrabold text-2xl sm:text-4xl text-black">Our Mission</h2>
+              <span className="h-1 w-25 bg-primary rounded-full" />
+            </div>
+
+            <div className="col-span-2 space-y-6">
+              <h3 className="text-primary font-bold font-manrope text-xl sm:text-2xl">
+                Majestic (madzestik; majes’tik) adj. beautiful, dignified and impressive.
+              </h3>
+              <p>We believe life is a beautiful gift. Majestic Care Nurses and CHHAs are passionate about giving quality care to our clients to achieve a better quality of life.</p>
+              <p>A&J Majestic Care is a unique and holistic healthcare service for in home and other familiar living spaces</p>
+              <p>Our mission is to collaborate with our client and family health care service, in a self-directed way that respects their individuality, faith and values. We seek to coordinate the highest quality of care by reaching out to clients and their families for their physical, emotional, social, and spiritual needs during illness or other life changes.</p>
+              <p>We also seek to create connections through social media to educate and guide communities on the importance of quality care for a better life among adults, aging clients and caregivers alike.</p>
+            </div>
+          </div>
+        </div>
+      </section>
     
     </>
   )
