@@ -55,7 +55,7 @@ export default async function HomePage() {
           <p className="text-tertiary uppercase font-bold tracking-widest text-xs text-center brightness-50">Inspired to care the majestic way</p>
 
           <div className="space-y-8 sm:space-y-10">
-            <h1 className="text-center text-2xl sm:text-4xl md:text-5xl font-extrabold font-manrope sm:space-y-3">
+            <h1 id="hero-heading" className="text-center text-2xl sm:text-4xl md:text-5xl font-extrabold font-manrope sm:space-y-3">
               <span className="block text-black">Providing quality home care with</span>
               <span className="block text-black"><span className="text-primary font-ireland">love and compassion</span> by</span>
               <span className="block text-black">experienced professionals.</span>
