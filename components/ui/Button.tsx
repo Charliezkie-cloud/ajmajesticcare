@@ -25,7 +25,7 @@ const sizes = {
   auto: "text-sm md:text-md"
 };
 
-export default function Button({ type = "button", variant = "primary", size = "md", className = "", href = "", onClick, children }: props) {
+export default function Button({ type = "button", variant = "primary", size = "md", className, href, onClick, children }: props) {
   const classes = [
     "transition px-6 py-3 rounded-lg",
     variants[variant],
@@ -33,7 +33,7 @@ export default function Button({ type = "button", variant = "primary", size = "m
     className
   ].join(" ");
 
-  if (href) <Link href={href} className={classes}>{children}</Link>
+  if (href) return <Link href={href} className={classes}>{children}</Link>
   
   return <button type={type} className={classes} onClick={onClick}>{children}</button>
 }

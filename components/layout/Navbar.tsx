@@ -90,7 +90,7 @@ export default function Navbar() {
             })}
           </ul>
 
-          <Button size="sm" variant="primary" className="hidden lg:block">Book Consultation</Button>
+          <Button href="/contact" size="sm" variant="primary" className="hidden lg:block">Book Consultation</Button>
 
           <button aria-label={offcanvas ? "Close menu" : "Open menu"} aria-expanded={offcanvas} aria-controls="mobile-menu" className="block lg:hidden px-4 py-2" onClick={toggleOffcanvas}>
             <LuMenu className="size-5" aria-hidden="true" />
@@ -116,7 +116,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div className="p-8">
+        <div className="p-8 space-y-6">
           <ul className="flex flex-col justify-center items-start gap-6 text-nowrap text-sm" role="list">
             {links.map((item, index) => {
               const isActive = pathname === item.href;
@@ -137,6 +137,7 @@ export default function Navbar() {
                   </Link>
 
                   <ul role="list">
+
                     {item.dropdown?.map((sub) => {
                       const isSubActive = pathname === sub.href;
 
@@ -148,11 +149,16 @@ export default function Navbar() {
                         </li>
                       )
                     })}
+
                   </ul>
                 </li>
               )
             })}
           </ul>
+
+          <div className="flex items-center justify-center">
+            <Button href="/contact" size="sm" variant="primary" className="w-full text-center">Book Consultation</Button>
+          </div>
         </div>
       </aside>
     </>
