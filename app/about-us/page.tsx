@@ -50,8 +50,8 @@ export default function AboutUsPage() {
         <div className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto">
           <div className="flex flex-col sm:grid sm:grid-cols-3 gap-6">
             <div className="flex flex-col gap-4">
-              <h2 className="font-manrope font-extrabold text-2xl sm:text-4xl text-black">Our Mission</h2>
-              <span className="h-1 w-25 bg-primary rounded-full" />
+              <h2 className="sticky top-45 lg:top-40 font-manrope font-extrabold text-2xl sm:text-4xl text-black">Our Mission</h2>
+              <span className="sticky top-55 lg:top-53 h-1 w-25 bg-primary rounded-full" />
             </div>
 
             <div className="col-span-2 space-y-6">
