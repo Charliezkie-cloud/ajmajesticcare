@@ -59,7 +59,7 @@ export default function ContactPage() {
       <section id="contact" className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto my-12 py-12" aria-labelledby="contact-heading" itemScope itemType="https://schema.org/ContactPage">
         <div className="flex flex-col lg:grid lg:grid-cols-3 gap-12">
 
-          <div className="bg-white p-12 rounded-2xl shadow shadow-xl space-y-6 col-span-2">
+          <div className="bg-white p-4 sm:p-8 md:p-12 rounded-2xl shadow shadow-xl space-y-6 col-span-2">
             <form className="space-y-6" aria-label="Contact form">
               <h2 id="contact-heading" className="text-black font-manrope font-bold text-xl sm:text-3xl mb-6">Send a Message</h2>
 
