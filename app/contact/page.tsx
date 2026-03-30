@@ -105,7 +105,7 @@ export default function ContactPage() {
               <div key={`contact-item-${index}`} className="flex flex-row gap-4 items-start justify-start">
                 {contact.icon}
                 <div className="space-y-2 text-sm">
-                  <h3 className={`uppercase brightness-75 font-bold ${contact.titleColor}`}>{contact.title}</h3>
+                  <h3 className={`tracking-wider uppercase brightness-75 font-bold ${contact.titleColor}`}>{contact.title}</h3>
 
                   <div className="space-y-1">
                     {contact.informations.map((info, infoIndex) => (
