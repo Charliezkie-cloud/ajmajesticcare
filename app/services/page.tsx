@@ -1,6 +1,7 @@
 import { LuCircleCheck } from "react-icons/lu";
 
 import Image from "next/image";
+import FinalCTASection from "@/components/layout/FinalCTASection";
 
 import PersonalCareIcon from "@/public/icons/personal-care-icon.svg";
 import SupportIcon from "@/public/icons/support-icon.svg";
@@ -134,6 +135,9 @@ export default function ServicesPage() {
 
         </div>
       </section>
+
+      {/* Final CTA Section */}
+      <FinalCTASection />
 
     </>
   )
