@@ -48,12 +48,12 @@ export default function Navbar() {
   return (
     <>
       <nav aria-label="Main navigation" className="bg-gray-100/75 border-b border-b-gray-200 backdrop-blur-xl py-6">
-        <div className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto flex flex-row md:flex-col lg:flex-row justify-between items-center gap-6 lg:gap-2">
+        <div className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto flex flex-row md:flex-row justify-between items-center gap-6 lg:gap-2">
           <Link href="/" aria-label="Go to homepage">
             <Image src={Logo} className="h-[40px] w-auto" alt="A & J Majestic Care" priority />
           </Link>
 
-          <ul className="hidden md:inline-flex justify-center items-center gap-6 text-nowrap text-sm" role="list">
+          <ul className="hidden lg:inline-flex justify-center items-center gap-6 text-nowrap text-sm" role="list">
             {links.map((item, index) => {
               const isActive = pathname === item.href;
 
@@ -90,19 +90,19 @@ export default function Navbar() {
             })}
           </ul>
 
-          <Button size="sm" variant="primary" className="hidden md:block">Book Consultation</Button>
+          <Button size="sm" variant="primary" className="hidden lg:block">Book Consultation</Button>
 
-          <button aria-label={offcanvas ? "Close menu" : "Open menu"} aria-expanded={offcanvas} aria-controls="mobile-menu" className="block md:hidden px-4 py-2" onClick={toggleOffcanvas}>
+          <button aria-label={offcanvas ? "Close menu" : "Open menu"} aria-expanded={offcanvas} aria-controls="mobile-menu" className="block lg:hidden px-4 py-2" onClick={toggleOffcanvas}>
             <LuMenu className="size-5" aria-hidden="true" />
           </button>
         </div>
       </nav>
 
       {/* Backdrop */}
-      <div aria-hidden="true" onClick={toggleOffcanvas} className={`fixed inset-0 z-40 bg-black/40 backdrop-blur-sm transition-opacity duration-300 md:hidden ${offcanvas ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`} />
+      <div aria-hidden="true" onClick={toggleOffcanvas} className={`fixed inset-0 z-40 bg-black/40 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${offcanvas ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`} />
 
       {/* Mobile offcanvas */}
-      <aside id="mobile-menu" aria-label="Mobile navigation" aria-hidden={!offcanvas} className={`fixed top-0 bottom-0 left-0 z-50 w-[min(80vw,24rem)] bg-white border-e border-e-gray-200 transition-transform duration-300 ease-in-out md:hidden ${offcanvas ? "translate-x-0" : "-translate-x-full"}`}>
+      <aside id="mobile-menu" aria-label="Mobile navigation" aria-hidden={!offcanvas} className={`fixed top-0 bottom-0 left-0 z-50 w-[min(80vw,24rem)] bg-white border-e border-e-gray-200 transition-transform duration-300 ease-in-out lg:hidden ${offcanvas ? "translate-x-0" : "-translate-x-full"}`}>
         <div className="bg-gray-100/75 border-b border-b-gray-200 p-4 space-y-4">
           <div className="flex items-center justify-end w-full">
             <button onClick={toggleOffcanvas} aria-label="Close menu" className="p-1 rounded-md hover:bg-gray-200 transition">
