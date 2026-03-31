@@ -15,7 +15,7 @@ const contacts = [
     ),
     title: "Our location",
     titleColor: "text-secondary",
-    informations: ["219 South Street Suite 213 New Providence, NJ 07974-0797"],
+    informations: [process.env.NEXT_PUBLIC_LOCATION],
   },
   {
     icon: (
@@ -25,7 +25,10 @@ const contacts = [
     ),
     title: "Contact Details",
     titleColor: "text-primary",
-    informations: ["Phone: (732) 844-9021", "Fax: (908) 325-1850"],
+    informations: [
+      `Phone: ${process.env.NEXT_PUBLIC_PHONE}`,
+      `Fax: ${process.env.NEXT_PUBLIC_FAX}`
+    ],
     extras: ["RN Representatives available 24/7", "Office Hours: 9:00am-5:00pm (M-F)"]
   },
   {
@@ -36,7 +39,7 @@ const contacts = [
     ),
     title: "Email Support",
     titleColor: "text-tertiary",
-    informations: ["almz1majesticcare@gmail.com"],
+    informations: [process.env.NEXT_PUBLIC_EMAIL_SUPPORT],
   },
 ];
 

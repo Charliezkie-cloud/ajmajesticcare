@@ -4,11 +4,11 @@ import { LuClock, LuMail, LuPhone } from "react-icons/lu";
 import Link from "next/link";
 
 const data = {
-  facebookLink: "https://www.facebook.com/",
-  linkedInLink: "https://linkedin.com/",
-  phoneNumber: "(732) 844-9021",
-  schedule: "Monday to Friday 9 AM to 5 PM",
-  email: "almz1majesticcare@gmail.com"
+  facebookLink: process.env.NEXT_PUBLIC_FACEBOOK ?? "",
+  linkedInLink: process.env.NEXT_PUBLIC_LINKEDIN ?? "",
+  phoneNumber: process.env.NEXT_PUBLIC_PHONE,
+  schedule: process.env.NEXT_PUBLIC_OFFICE_HOURS,
+  email: process.env.NEXT_PUBLIC_EMAIL_SUPPORT
 };
 
 const linkClass = "uppercase tracking-wider font-semibold inline-flex items-center gap-2"
