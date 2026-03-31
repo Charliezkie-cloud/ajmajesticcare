@@ -62,6 +62,8 @@ export default function CareersPage() {
               <label htmlFor="experience" className="font-semibold">Experience</label>
               <Textarea id="experience" name="experience" placeholder="Tell us about your relevant work experience and background" rows={6} required></Textarea>
             </div>
+            
+            <Button type="submit" className="font-semibold w-full">Submit Interest Form</Button>
 
           </form>
 
