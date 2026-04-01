@@ -2,44 +2,56 @@
 
 import ReviewForm from "@/components/forms/ReviewForm";
 import Modal from "@/components/ui/Modal";
-import { useState } from "react";
 
+import { useState } from "react";
 import { BsStarFill } from "react-icons/bs"
-import { LuUser } from "react-icons/lu"
 
 const reviews = [
   {
     user: "T. L.",
+    role: "Verified Family Member",
     rating: 5,
     date: new Date("October 1, 2025"),
     comment: "We brought in A&J to provide 24x7 care for my elderly father after an unfortunate incident with a prior caregiver. They moved very quickly to put together a full schedule of top quality caregivers. They have been flexible, responsive and have ensured coverage whenever there are changes in the schedule."
   },
   {
     user: "Melanie Huashuayo",
+    role: "Granddaughter",
     rating: 5,
     date: new Date("September 1, 2025"),
-    comment: "The care my grandmother receives from A & J Majestic Care has been amazing. She looks forward to her visits and feels safe and comfortable. It’s such a comfort knowing someone reliable is looking after her each day."
+    comment: "The care my grandmother receives from A & J Majestic Care has been amazing. She looks forward to her visits and feels safe and comfortable. It's such a comfort knowing someone reliable is looking after her each day."
   },
   {
     user: "Venus Carandang",
+    role: "Family Liaison",
     rating: 5,
     date: new Date("March 31, 2022"),
     comment: "This agency helped a lot with my nana. The care they provided was excellent and the staff were friendly and accommodating. Especially Maria was very helpful assisting me on the phone with my inquires."
   }
 ];
 
-const dateFormatOptions: Intl.DateTimeFormatOptions = {
-  weekday: "long",
-  year: "numeric",
-  month: "long",
-  day: "numeric"
-};
+const avatarColors = [
+  "bg-violet-200 text-violet-700",
+  "bg-sky-200 text-sky-700",
+  "bg-rose-200 text-rose-700",
+  "bg-emerald-200 text-emerald-700",
+  "bg-amber-200 text-amber-700",
+];
+
+function getInitials(name: string): string {
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
+}
 
 export default function ReviewsPage() {
   const [reviewModal, setReviewModal] = useState(false);
 
   function onReviewModalClose() { setReviewModal(false); }
-  
+
   return (
     <>
 
@@ -62,7 +74,7 @@ export default function ReviewsPage() {
           <div className="flex flex-col md:flex-row justify-center gap-6">
 
             {reviews.map((review, index) => (
-              <article key={`review-item-${index}`} className={`w-full md:w-md bg-white rounded-2xl shadow-2xl p-8 md:p-12`} itemScope itemType="https://schema.org/Review">
+              <article key={`review-item-${index}`} className="w-full md:w-md bg-white rounded-2xl shadow-2xl p-8 md:p-12" itemScope itemType="https://schema.org/Review">
                 <div className="flex flex-col gap-6 h-full">
 
                   <div className="inline-flex gap-2" itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
@@ -72,18 +84,21 @@ export default function ReviewsPage() {
                     {Array.from({ length: review.rating }).map((_, starIndex) => (
                       <BsStarFill key={`review-item-${index}-${starIndex}`} className="text-yellow-400 text-2xl" />
                     ))}
-
                   </div>
 
                   <p itemProp="reviewBody">{review.comment}</p>
 
-                  <div className="flex flex-row md:flex-col lg:flex-row items-center gap-6 mt-auto" itemProp="author" itemScope itemType="https://schema.org/Person">
-                    <div className="bg-primary/10 rounded-full p-4">
-                      <LuUser className="size-8" />
-                    </div>
-                    <div className="space-y-1">
-                      <h2 className="font-manrope text-black font-bold" itemProp="name">{review.user}</h2>
-                      <p className="opacity-50 text-sm">{review.date.toLocaleDateString("en-US", dateFormatOptions)}</p>
+                  <div className="mt-auto space-y-6">
+                    <hr className="border-gray-100" />
+
+                    <div className="flex flex-row items-center gap-4" itemProp="author" itemScope itemType="https://schema.org/Person">
+                      <div className={`rounded-full size-12 flex items-center justify-center font-bold text-sm shrink-0 ${avatarColors[index % avatarColors.length]}`} aria-hidden="true">
+                        {getInitials(review.user)}
+                      </div>
+                      <div className="space-y-0.5">
+                        <h2 className="font-manrope text-black font-bold leading-tight" itemProp="name">{review.user}</h2>
+                        <p className="opacity-50 text-sm">{review.role}</p>
+                      </div>
                     </div>
                   </div>
 
