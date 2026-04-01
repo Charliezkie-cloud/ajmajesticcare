@@ -1,4 +1,3 @@
-import Button from "@/components/ui/Button"
 import { BsStarFill } from "react-icons/bs"
 import { LuUser } from "react-icons/lu"
 
