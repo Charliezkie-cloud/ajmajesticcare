@@ -1,6 +1,6 @@
 import { LuMapPin } from "react-icons/lu";
 
-import GoogleMap from "@/components/GoogleMap";
+import GoogleMap from "@/components/ui/GoogleMap";
 import AboutUsImage from "@/public/about-us-image.jpg";
 import Image from "next/image";
 import FinalCTASection from "@/components/layout/FinalCTASection";
