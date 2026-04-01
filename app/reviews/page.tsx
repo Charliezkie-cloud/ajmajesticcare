@@ -1,3 +1,9 @@
+"use client"
+
+import ReviewForm from "@/components/forms/ReviewForm";
+import Modal from "@/components/ui/Modal";
+import { useState } from "react";
+
 import { BsStarFill } from "react-icons/bs"
 import { LuUser } from "react-icons/lu"
 
@@ -30,6 +36,10 @@ const dateFormatOptions: Intl.DateTimeFormatOptions = {
 };
 
 export default function ReviewsPage() {
+  const [reviewModal, setReviewModal] = useState(false);
+
+  function onReviewModalClose() { setReviewModal(false); }
+  
   return (
     <>
 
@@ -94,13 +104,23 @@ export default function ReviewsPage() {
               <div className="flex flex-col gap-8 items-center justify-center">
                 <h2 id="final-cta-heading" className="text-center text-white font-manrope font-bold text-2xl md:text-4xl">Have We Cared For Your Loved One?</h2>
                 <p className="text-center">Your feedback helps us continue to provide the highest level of care. We would be honored if you shared your experience with us.</p>
-                <button aria-label="Open review form to share your care experience" aria-haspopup="dialog" className="transition bg-white hover:bg-gray-200 active:bg-gray-300 text-primary font-semibold px-8 py-4 rounded-full shadow-2xl text-sm sm:text-md">Leave a Review</button>
+                <button onClick={() => setReviewModal(!reviewModal)} aria-label="Open review form to share your care experience" aria-haspopup="dialog" className="transition bg-white hover:bg-gray-200 active:bg-gray-300 text-primary font-semibold px-8 py-4 rounded-full shadow-2xl text-sm sm:text-md">Leave a Review</button>
               </div>
             </div>
 
           </div>
         </div>
       </section>
+
+      {/* Review form modal */}
+      <Modal show={reviewModal} onClose={onReviewModalClose} title="Share Your Experience">
+        <ReviewForm
+          onClose={onReviewModalClose}
+          onSubmit={(data) => {
+            console.log(data);
+          }}
+        />
+      </Modal>
 
     </>
   )
