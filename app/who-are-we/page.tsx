@@ -4,13 +4,19 @@ import Badge from "@/components/ui/Badge";
 import Image from "next/image";
 
 import AboutUsImage from "@/public/about-us-image.jpg";
+import FemaleNurse from "@/public/female-nurse.jpg";
+import MaleNurse from "@/public/male-nurse.jpg";
 
 export default function WhoAreWePage() {
   return (
     <>
 
       {/* Hero section */}
-      <section id="hero" aria-labelledby="hero-heading" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8 md:py-12 lg:py-16 flex items-center justify-center">
+      <section 
+        id="hero" 
+        aria-labelledby="hero-heading" 
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8 md:py-12 lg:py-16 flex items-center justify-center"
+        >
         <div className="flex flex-col justify-center items-center space-y-6 sm:space-y-12 w-full">
 
           <div className="max-w-2xl w-full space-y-6">
@@ -48,12 +54,65 @@ export default function WhoAreWePage() {
 
           <div className="relative w-full mb-12 sm:mb-14">
             <Image src={AboutUsImage} alt="A caregiver from A&J Majestic Care providing companionship to an elderly client at home" className="rounded-2xl shadow-xl w-full h-auto object-cover" priority />
-            <div className="bg-white p-4 absolute right-4 sm:right-10 -bottom-10 rounded-2xl shadow-2xl max-w-[200px] sm:max-w-xs">
+            <div className="bg-white p-4 absolute right-4 sm:right-10 -bottom-20 rounded-2xl shadow-2xl max-w-[200px] sm:max-w-xs">
               <h2 className="text-primary font-manrope font-bold">50+ Years</h2>
               <p className="text-sm">Combined nursing experience serving our community.</p>
             </div>
           </div>
 
+        </div>
+      </section>
+
+      {/* Our Origins Section */}
+      <section
+        id="our-origins"
+        aria-labelledby="our-origins-heading"
+        className="bg-[#F5F2FF] my-24 py-12"
+        itemScope
+        itemType="https://schema.org/AboutPage"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+
+            <div className="flex flex-row items-center justify-center gap-4 sm:gap-6">
+              <Image
+                src={FemaleNurse}
+                alt="A&J Majestic Care co-founder female nurse holding a clipboard"
+                width={280}
+                height={360}
+                className="rounded-2xl shadow-xl object-cover mt-6 w-[46%] sm:w-[260px] lg:w-[280px]"
+                itemProp="image"
+              />
+              <Image
+                src={MaleNurse}
+                alt="A&J Majestic Care co-founder male nurse with a stethoscope"
+                width={280}
+                height={360}
+                className="rounded-2xl shadow-xl object-cover mb-6 w-[46%] sm:w-[260px] lg:w-[280px]"
+                itemProp="image"
+              />
+            </div>
+
+            <div className="space-y-4 sm:space-y-6">
+              <p className="text-tertiary uppercase font-bold tracking-widest text-xs brightness-50">
+                Our Origins
+              </p>
+              <h2
+                id="our-origins-heading"
+                className="font-manrope font-bold text-black text-2xl sm:text-4xl md:text-5xl"
+                itemProp="name"
+              >
+                A Passion to Serve Born from Two Nurses.
+              </h2>
+              <p itemProp="description">
+                A&J Majestic Care has a humble beginning that grows out of passion and inspiration to serve those in need by two Nurses.
+              </p>
+              <p>
+                Their more than 50 years combined nursing experiences from various areas of specialties make an unparalleled difference from other providers. We understand the clinical nuances and the human emotions that come with home health care.
+              </p>
+            </div>
+
+          </div>
         </div>
       </section>
 
