@@ -1,4 +1,4 @@
-import { LuHospital, LuShieldCheck } from "react-icons/lu";
+import { LuHeartHandshake, LuHospital, LuShieldCheck } from "react-icons/lu";
 
 import Badge from "@/components/ui/Badge";
 import Image from "next/image";
@@ -53,7 +53,10 @@ export default function WhoAreWePage() {
           </div>
 
           <div className="relative w-full mb-12 sm:mb-14">
-            <Image src={AboutUsImage} alt="A caregiver from A&J Majestic Care providing companionship to an elderly client at home" className="rounded-2xl shadow-xl w-full h-auto object-cover" priority />
+            <Image 
+              src={AboutUsImage} 
+              alt="A caregiver from A&J Majestic Care providing companionship to an elderly client at home" className="rounded-2xl shadow-xl w-full h-auto object-cover" priority 
+            />
             <div className="bg-white p-4 absolute right-4 sm:right-10 -bottom-20 rounded-2xl shadow-2xl max-w-[200px] sm:max-w-xs">
               <h2 className="text-primary font-manrope font-bold">50+ Years</h2>
               <p className="text-sm">Combined nursing experience serving our community.</p>
@@ -112,6 +115,23 @@ export default function WhoAreWePage() {
               </p>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* Commitment section */}
+      <section id="commitment" aria-labelledby="commitment-heading" className="w-full bg-violet-50 py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex flex-col items-center justify-center gap-6 text-center">
+          <div className="bg-primary/10 rounded-full p-4">
+            <LuHeartHandshake className="size-8 text-primary" />
+          </div>
+          <h2 id="commitment-heading" className="font-manrope text-black font-bold text-2xl md:text-4xl">
+            A Commitment to Care for Everyone
+          </h2>
+          <div className="bg-white p-8 rounded-2xl shadow-sm text-center max-w-2xl w-full">
+            <q className="text-gray-600 italic text-sm sm:text-base leading-relaxed">
+              A&J Majestic Care does not discriminate against any application for services because of race, color, religion, sexual orientation, gender identity, national origin, ancestry, citizenship status, age (adult) or disability.
+            </q>
           </div>
         </div>
       </section>
