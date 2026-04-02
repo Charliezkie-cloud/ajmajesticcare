@@ -7,6 +7,7 @@ type props = {
   size?: "sm" | "md" | "lg" | "auto";
   className?: string
   href?: string
+  disabled?: boolean
   onClick?: (e?: MouseEvent<HTMLButtonElement>) => void;
   children: ReactNode;
 };
@@ -25,7 +26,7 @@ const sizes = {
   auto: "text-sm md:text-md"
 };
 
-export default function Button({ type = "button", variant = "primary", size = "md", className, href, onClick, children }: props) {
+export default function Button({ type = "button", variant = "primary", size = "md", className, href, disabled, onClick, children }: props) {
   const classes = [
     "transition px-6 py-3 rounded-lg",
     variants[variant],
@@ -35,5 +36,5 @@ export default function Button({ type = "button", variant = "primary", size = "m
 
   if (href) return <Link href={href} className={classes}>{children}</Link>
   
-  return <button type={type} className={classes} onClick={onClick}>{children}</button>
+  return <button type={type} className={classes} onClick={onClick} disabled={disabled}>{children}</button>
 }
