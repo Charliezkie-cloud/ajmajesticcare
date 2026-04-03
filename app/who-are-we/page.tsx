@@ -27,7 +27,7 @@ export default function WhoAreWePage() {
             <h1 id="hero-heading" className="font-manrope text-black font-bold text-2xl sm:text-4xl md:text-6xl text-center">
               Who are we?
             </h1>
-            <p className="text-center text-sm sm:text-base leading-relaxed">
+            <p className="text-center leading-relaxed">
               A&amp;J Majestic Care is a home health care services provider inspired to care the
               majestic way for recovering disabled adults and senior living in the comfort of
               their homes or other living spaces they considered home... We believe in holistic
