@@ -114,7 +114,7 @@ export default function InspiredPage() {
       </section>
 
       {/* Core values section */}
-      <section id="core-values" aria-labelledby="core-values-heading">
+      <section id="core-values" aria-labelledby="core-values-heading" className="py-12">
         <div className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto">
           <h2 id="core-values-heading" className="sr-only">Our Core Values</h2>
 
