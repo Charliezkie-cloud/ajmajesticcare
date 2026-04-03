@@ -1,4 +1,4 @@
-import { LuHeartHandshake, LuHospital, LuShieldCheck } from "react-icons/lu";
+import { LuBanknote, LuGraduationCap, LuHeartHandshake, LuHospital, LuShieldCheck } from "react-icons/lu";
 
 import Badge from "@/components/ui/Badge";
 import Image from "next/image";
@@ -6,6 +6,7 @@ import Image from "next/image";
 import AboutUsImage from "@/public/about-us-image.jpg";
 import FemaleNurse from "@/public/female-nurse.jpg";
 import MaleNurse from "@/public/male-nurse.jpg";
+import FinalCTASection from "@/components/layout/FinalCTASection";
 
 export default function WhoAreWePage() {
   return (
@@ -120,7 +121,11 @@ export default function WhoAreWePage() {
       </section>
 
       {/* Commitment section */}
-      <section id="commitment" aria-labelledby="commitment-heading" className="w-full bg-violet-50 py-16 px-4 sm:px-6 lg:px-8">
+      <section 
+        id="commitment"
+        aria-labelledby="commitment-heading"
+        className="w-full py-16 px-4 sm:px-6 lg:px-8"
+      >
         <div className="max-w-7xl mx-auto flex flex-col items-center justify-center gap-6 text-center">
           <div className="bg-primary/10 rounded-full p-4">
             <LuHeartHandshake className="size-8 text-primary" />
@@ -135,6 +140,65 @@ export default function WhoAreWePage() {
           </div>
         </div>
       </section>
+
+      {/* Support and accessibility section */}
+      <section
+        id="support-and-accessibility"
+        aria-labelledby="support-and-accessibility-heading"
+        className="bg-[#F5F2FF] my-24 py-12"
+      >
+        <div className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto space-y-8">
+
+          <div className="flex flex-col md:grid md:grid-cols-2 gap-12">
+            <div className="space-y-4">
+              <p className="text-tertiary uppercase font-bold tracking-widest text-xs brightness-50">
+                Resources
+              </p>
+              <h2 id="support-and-accessibility-heading" className="font-manrope font-bold text-black text-2xl md:text-4xl">Support & Accessibility</h2>
+            </div>
+            <div className="self-end">
+              <p className="text-end text-sm">Navigating care options can be complex. We are here to guide you through every financial and educational step.</p>
+            </div>
+          </div>
+
+          <ul className="flex flex-col md:grid md:grid-cols-2 gap-6" role="list">
+
+            {[
+              {
+                icon: (
+                  <div className="bg-secondary/10 rounded-full p-4" aria-hidden="true">
+                    <LuBanknote className="size-8 text-black" />
+                  </div>
+                ),
+                title: "Payments",
+                content: "We accept Private Pay & Insurance, ensuring high-quality care is reachable for everyone. Our team handles the complexities so you can focus on health."
+              },
+              {
+                icon: (
+                  <div className="bg-primary/10 rounded-full p-4" aria-hidden="true">
+                    <LuGraduationCap className="size-8 text-black" />
+                  </div>
+                ),
+                title: "Family Education",
+                content: "We inform and educate family caregivers and clients regarding insurance resources: Long Term Care, Veterans Benefits, Private & Managed Care. Knowledge is the first step to peace of mind."
+              }
+            ].map((item, index) => (
+              <li key={`support-item-${index}`} className="bg-white p-6 sm:p-12 rounded-2xl shadow-xl space-y-6">
+                <div className="flex items-center justify-start">
+                  {item.icon}
+                </div>
+                <h3 className="font-manrope font-bold text-black text-xl sm:text-2xl">{item.title}</h3>
+                <p>{item.content}</p>
+              </li>
+            ))}
+
+          </ul>
+
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <FinalCTASection />
 
     </>
   )
