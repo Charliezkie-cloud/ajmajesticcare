@@ -54,7 +54,7 @@ export default function WhatDoWeDoPage() {
               <h2 id="team-approach-heading" className="font-manrope font-bold text-black text-2xl sm:text-4xl" itemProp="name">The Team Approach</h2>
               <p itemProp="description">A&J Majestic Care uses a team approach to start services. You, your nurses, Doctor and/or discharge planner are the initial team. We believe that open communication between healthcare providers and families is the cornerstone of effective care.</p>
               <p>Talk with them about what types of services you require. An A&J Majestic Care nurse can also be a good source for advice about determining services and how to proceed.</p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap justify-center sm:justify-start items-center gap-4">
 
                 {[
                   {
@@ -66,7 +66,7 @@ export default function WhatDoWeDoPage() {
                     text: "Clinical Advice"
                   },
                 ].map((item, index) => (
-                  <Badge key={`team-approach-badge-${index}`} variant="secondary" className="flex gap-2 items-center justify-center font-semibold">
+                  <Badge key={`team-approach-badge-${index}`} variant="secondary" size="sm" className="flex gap-2 items-center justify-center font-semibold">
                     {item.icon}
                     {item.text}
                   </Badge>
