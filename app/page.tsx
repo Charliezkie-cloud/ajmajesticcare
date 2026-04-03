@@ -39,7 +39,7 @@ const services = [
 
 const testimonial = {
   rating: 5,
-  content: "&quot;We brought in A&amp;J to provide 24x7 care for my elderly father after an unfortunate incident with a prior caregiver. They moved very quickly to put together a full schedule of top quality caregivers. They have been flexible, responsive and have ensured coverage whenever there are changes in the schedule.&quot;",
+  content: "We brought in A & J to provide 24x7 care for my elderly father after an unfortunate incident with a prior caregiver. They moved very quickly to put together a full schedule of top quality caregivers. They have been flexible, responsive and have ensured coverage whenever there are changes in the schedule.",
   author: {
     name: "T. L.",
     address: "Somewhere in New York"
@@ -163,7 +163,9 @@ export default async function HomePage() {
             </div>
 
             {/* Review body */}
-            <blockquote className="font-manrope text-xl sm:text-2xl font-bold text-black" itemProp="reviewBody">{testimonial.content}</blockquote>
+            <div>
+              <q className="font-manrope text-xl sm:text-2xl font-bold text-black" itemProp="reviewBody">{testimonial.content}</q>
+            </div>
 
             {/* Author */}
             <div className="flex flex-row gap-4" itemScope itemType="https://schema.org/Person" itemProp="author">
