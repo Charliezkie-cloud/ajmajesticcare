@@ -1,5 +1,5 @@
 import Badge from "@/components/ui/Badge"
-import { LuBadgeCheck, LuContactRound, LuFingerprint, LuShieldCheck } from "react-icons/lu"
+import { LuBadgeCheck, LuContactRound, LuFingerprint, LuGlobe, LuGraduationCap, LuShieldCheck, LuUsers } from "react-icons/lu"
 
 const values = [
   {
@@ -22,6 +22,29 @@ const values = [
     title: "Integrity",
     body: "A & J Majestic Care is Licensed, Registered, Insured and Bonded. Our professionals are skilled in specialized care including Alzheimer’s, dementia, and stroke recovery.",
     badges: ["Licensed", "Insured", "Bonded"]
+  },
+];
+
+const coreValues = [
+  {
+    icon: <LuUsers className="text-primary size-6" />,
+    title: "Participation",
+    body: "Participation of family caregivers and clients in creating their customized Plan of Care with their RN provider is encouraged."
+  },
+  {
+    icon: <LuContactRound className="text-primary size-6" />,
+    title: "Responsibility",
+    body: "Employees receive competency and performance training. All CHHAs are supervised by an RN to ensure the highest standards."
+  },
+  {
+    icon: <LuGraduationCap className="text-primary size-6" />,
+    title: "Educational Services",
+    body: "Educational Services for our clients and family. We strive to educate through social media and in-service training."
+  },
+  {
+    icon: <LuGlobe className="text-primary size-6" />,
+    title: "Diversity",
+    body: "We believe health care is universal. We offer variety in programs and payment options, accepting Private Pay and Insurance."
   },
 ]
 
@@ -87,6 +110,31 @@ export default function InspiredPage() {
             ))}
 
           </div>
+        </div>
+      </section>
+
+      {/* Core values section */}
+      <section id="core-values" aria-labelledby="core-values-heading">
+        <div className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto">
+          <h2 id="core-values-heading" className="sr-only">Our Core Values</h2>
+
+          <div className="flex flex-col md:grid md:grid-cols-2 md:grid-rows-2 lg:flex lg:flex-row gap-6">
+
+            {coreValues.map((item, index) => (
+              <article
+                key={`core-value-item-${index}`}
+                itemScope
+                itemType="https://schema.org/Thing"
+                className="space-y-4"
+              >
+                <div aria-hidden="true">{item.icon}</div>
+                <h3 itemProp="name" className="font-manrope font-bold text-black">{item.title}</h3>
+                <p itemProp="description">{item.body}</p>
+              </article>
+            ))}
+
+          </div>
+
         </div>
       </section>
 
