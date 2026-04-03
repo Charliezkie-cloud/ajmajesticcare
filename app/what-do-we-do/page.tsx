@@ -1,4 +1,4 @@
-import { LuArrowRightLeft, LuBriefcaseMedical, LuHospital, LuNetwork, LuStethoscope, LuUsers } from "react-icons/lu";
+import { LuArrowRightLeft, LuBriefcaseMedical, LuHospital, LuListTodo, LuNetwork, LuShieldCheck, LuStethoscope, LuUsers, LuUserSearch } from "react-icons/lu";
 
 import Image from "next/image";
 import Badge from "@/components/ui/Badge";
@@ -54,7 +54,7 @@ export default function WhatDoWeDoPage() {
               <h2 id="team-approach-heading" className="font-manrope font-bold text-black text-2xl sm:text-4xl" itemProp="name">The Team Approach</h2>
               <p itemProp="description">A&J Majestic Care uses a team approach to start services. You, your nurses, Doctor and/or discharge planner are the initial team. We believe that open communication between healthcare providers and families is the cornerstone of effective care.</p>
               <p>Talk with them about what types of services you require. An A&J Majestic Care nurse can also be a good source for advice about determining services and how to proceed.</p>
-              <div className="flex gap-4">
+              <div className="flex flex-wrap gap-4">
 
                 {[
                   {
@@ -79,7 +79,7 @@ export default function WhatDoWeDoPage() {
               <div className="absolute top-0 left-0 size-10 bg-primary blur-2xl" />
               <div className="absolute bottom-0 right-0 size-10 bg-secondary blur-2xl" />
 
-              <div className="flex flex-col md:grid md:grid-cols-2 md:grid-rows-2 gap-6">
+              <div className="flex flex-col md:grid md:grid-cols-2 md:grid-rows-2 gap-3 md:gap-6">
 
                 {[
                   {
@@ -114,6 +114,62 @@ export default function WhatDoWeDoPage() {
             </div>
 
           </div>
+        </div>
+      </section>
+
+      {/* Our process section */}
+      <section
+        id="our-process"
+        aria-labelledby="our-process-heading"
+        className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto"
+      >
+        <div className="space-y-12">
+
+          <div className="space-y-6">
+            <p className="text-tertiary uppercase font-bold tracking-widest text-xs text-center brightness-50">The Journey</p>
+            <h2 id="our-process-heading" className="text-center font-manrope font-bold text-black text-2xl sm:text-4xl">Our Care Process</h2>
+            <p className="text-center">A structured path to ensuring safety, comfort, and clinical excellence for every client we serve.</p>
+          </div>
+
+          <div className="flex flex-col md:grid md:grid-cols-3 gap-8 md:gap-6">
+
+            {[
+              {
+                icon: <LuUserSearch aria-hidden="true" title="Client intake assessment" className="text-primary brightness-75 text-3xl sm:text-5xl" />,
+                title: "Intake",
+                body: "A nurse or responsible staff conducts an interview with the client and family. Prior to starting assignments, an in-person RN assessment establishes a baseline of physical and functional status."
+              },
+              {
+                icon: <LuListTodo aria-hidden="true" title="Plan of care development" className="text-secondary brightness-75 text-3xl sm:text-5xl" />,
+                title: "Plan of Care",
+                body: "Our RN develops a personalized Plan of Care based on the in-patient assessment. This is completed within 24 to 48 hours of service start for patients discharged from health facilities."
+              },
+              {
+                icon: <LuShieldCheck aria-hidden="true" title="CHHA delegation and supervision" className="text-tertiary brightness-75 text-3xl sm:text-5xl" />,
+                title: "Delegation",
+                body: "RN reviews the Plan with the assigned CHHA. We delegate responsibilities and supervise assistive services. All CHHAs are meticulously chosen for their compassion and extensive training."
+              },
+            ].map((item, index) => {
+              const colors = [
+                "bg-primary",
+                "bg-secondary",
+                "bg-tertiary"
+              ];
+
+              return (
+                <div key={`our-process-item-${index}`} className="bg-white p-8 shadow-xl rounded-2xl space-y-6 relative">
+                  <div aria-label={`Step ${index + 1}`} className={`${colors[index]} absolute -top-5 rounded-2xl shadow-xl font-manrope text-white w-[50px] p-2 text-center font-bold text-xl sm:text-2xl`}>{index + 1}</div>
+                  <div className="space-y-4 mt-6">
+                    {item.icon}
+                    <h3 className="font-manrope font-bold text-black text-lg sm:text-xl">{item.title}</h3>
+                    <p>{item.body}</p>
+                  </div>
+                </div>
+              )
+            })}
+
+          </div>
+
         </div>
       </section>
 
