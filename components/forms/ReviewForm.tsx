@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { LuStar } from "react-icons/lu";
 
-type ReviewFormData = {
+export type ReviewFormData = {
   fullName: string;
   rating: number | string;
   comment: string;

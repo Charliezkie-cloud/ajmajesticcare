@@ -1,6 +1,6 @@
 "use client"
 
-import ReviewForm from "@/components/forms/ReviewForm";
+import ReviewForm, { ReviewFormData } from "@/components/forms/ReviewForm";
 import Modal from "@/components/ui/Modal";
 
 import { useState } from "react";
@@ -51,6 +51,25 @@ export default function ReviewsPage() {
   const [reviewModal, setReviewModal] = useState(false);
 
   function onReviewModalClose() { setReviewModal(false); }
+
+  async function onReviewSubmit(data: ReviewFormData) {
+    try {
+      const res = await fetch("/api/reviews", {
+        method: "POST",
+        body: JSON.stringify(data)
+      });
+
+      if (!res.ok) {
+        console.error("Something went wrong :(");
+        return;
+      }
+    } catch (error) {
+      if (error instanceof Error)
+        console.error(error.message);
+      else
+        console.error(error);
+    }
+  }
 
   return (
     <>
@@ -131,9 +150,7 @@ export default function ReviewsPage() {
       <Modal show={reviewModal} onClose={onReviewModalClose} title="Share Your Experience">
         <ReviewForm
           onClose={onReviewModalClose}
-          onSubmit={(data) => {
-            console.log(data);
-          }}
+          onSubmit={onReviewSubmit}
         />
       </Modal>
 
