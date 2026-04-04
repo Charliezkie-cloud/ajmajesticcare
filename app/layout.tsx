@@ -22,7 +22,7 @@ const playwriteIreland = Playwrite_IE({
   variable: "--font-cursive-ireland"
 });
 
-const siteUrl = "https://ajmajesticcare.vercel.app"; // TODO: replace with actual domain
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL!; // TODO: replace with actual domain
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
