@@ -5,6 +5,12 @@ import Link from "next/link";
 import Button from "@/components/ui/Button";
 import CareersForm from "@/components/forms/CareersForm";
 
+// ========== APPLICATION FORM PATH ==========
+
+const applicationFormPath = "/CHHACNA-Application-Form.pdf";
+
+// ========== APPLICATION FORM PATH ==========
+
 export default function CareersPage() {
   return (
     <>
@@ -17,7 +23,7 @@ export default function CareersPage() {
             <Link className="text-primary font-semibold" href="mailto:almz1majesticcare@gmail.com"> almz1majesticcare@gmail.com</Link>!
             We look forward to hearing from you.
           </h1>
-          <Button size="auto" className="w-full font-semibold flex justify-center items-center gap-2">
+          <Button download href={applicationFormPath} size="auto" className="w-full font-semibold flex justify-center items-center gap-2">
             <LuDownload className="size-5" /> Click Here for the CHAA/CNA Application Form
           </Button>
         </div>

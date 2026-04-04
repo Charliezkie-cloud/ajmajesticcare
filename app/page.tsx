@@ -13,6 +13,12 @@ import MedicalIcon from "@/public/icons/medical-icon.svg";
 import EducationIcon from "@/public/icons/education-icon.svg";
 import FocusIcon from "@/public/icons/focus-icon.svg";
 
+// ========== BROCHURE PATH ==========
+
+const brochurePath = "/A-J-MajesticCare-Brochure.pdf";
+
+// ========== BROCHURE PATH ==========
+
 const services = [
   {
     icon: ElderIcon,
@@ -64,8 +70,8 @@ export default async function HomePage() {
             <p className="text-center">Informed clients and caregivers make better decisions.</p>
 
             <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-2">
-              <Button size="auto" className="w-full sm:w-auto">Download Brochure</Button>
-              <Button variant="outlined" size="auto" className="inline-flex justify-center items-center gap-2 w-full sm:w-auto">
+              <Button download href={brochurePath} size="auto" className="w-full sm:w-auto">Download Brochure</Button>
+              <Button href="/contact" variant="outlined" size="auto" className="inline-flex justify-center items-center gap-2 w-full sm:w-auto">
                 Get Your Free Consultation <LuArrowRight className="size-5" />
               </Button>
             </div>

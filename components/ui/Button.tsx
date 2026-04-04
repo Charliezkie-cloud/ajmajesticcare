@@ -7,6 +7,7 @@ type props = {
   size?: "sm" | "md" | "lg" | "auto";
   className?: string
   href?: string
+  download?: boolean
   disabled?: boolean
   onClick?: (e?: MouseEvent<HTMLButtonElement>) => void;
   children: ReactNode;
@@ -26,7 +27,7 @@ const sizes = {
   auto: "text-sm md:text-md"
 };
 
-export default function Button({ type = "button", variant = "primary", size = "md", className, href, disabled, onClick, children }: props) {
+export default function Button({ type = "button", variant = "primary", size = "md", className, href, download = false, disabled, onClick, children }: props) {
   const classes = [
     "transition px-6 py-3 rounded-lg",
     variants[variant],
@@ -34,7 +35,7 @@ export default function Button({ type = "button", variant = "primary", size = "m
     className
   ].join(" ");
 
-  if (href) return <Link href={href} className={classes}>{children}</Link>
+  if (href) return <Link href={href} download={download} className={classes}>{children}</Link>
   
   return <button type={type} className={classes} onClick={onClick} disabled={disabled}>{children}</button>
 }
