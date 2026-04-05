@@ -5,7 +5,7 @@ import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
 
-type FormState = {
+export type FormState = {
   full_name: string;
   phone_number: string;
   email_address: string;
