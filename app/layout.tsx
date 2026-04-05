@@ -33,13 +33,69 @@ export const metadata: Metadata = {
   description:
     "We are a home care provider inspired to care the majestic way for recovering disabled adults and seniors. We believe each client deserves a holistic approach that restores and maintains their physical, mental, emotional, and spiritual health.",
   keywords: [
+    // Core service keywords
     "home health care",
     "home care services",
+    "in-home care",
+    "private duty nursing",
+    "personal care services",
+    "companion care",
+    "respite care",
+    "skilled nursing care at home",
+    "non-medical home care",
+    "24-hour home care",
+    "live-in care",
+
+    // Target demographics
     "senior care",
+    "elder care",
+    "elderly care at home",
     "disabled adult care",
+    "care for adults with disabilities",
+    "post-surgery home care",
+    "chronic illness care",
+    "Alzheimer's care at home",
+    "dementia care",
+    "Parkinson's care",
+
+    // Service-specific
+    "activities of daily living assistance",
+    "ADL assistance",
+    "medication reminders",
+    "mobility assistance",
+    "fall prevention care",
+    "wound care at home",
+    "physical therapy support",
+    "occupational therapy support",
+    "holistic home care",
+    "mental health support home care",
+    "spiritual care seniors",
+
+    // Geo-targeted — New Providence & surrounding NJ areas
     "New Providence NJ",
+    "New Providence home care",
     "in-home care New Jersey",
     "elder care NJ",
+    "home health aide NJ",
+    "home care agency New Jersey",
+    "Somerset County home care",
+    "Union County home care",
+    "Morris County home care",
+    "Millburn NJ home care",
+    "Summit NJ home care",
+    "Chatham NJ home care",
+    "Basking Ridge NJ home care",
+    "Westfield NJ elder care",
+    "Springfield NJ senior care",
+
+    // Trust & intent keywords
+    "licensed home care agency NJ",
+    "affordable home health care NJ",
+    "trusted home care provider NJ",
+    "best home care New Jersey",
+    "compassionate senior care NJ",
+    "family-centered home care",
+    "caregiver services NJ",
   ],
   authors: [{ name: "A & J Majestic Care", url: siteUrl }], // TODO: replace
   category: "Health Care",
@@ -96,10 +152,48 @@ const localBusinessSchema = {
     addressRegion: "NJ",
     addressCountry: "US",
   },
-  areaServed: {
-    "@type": "State",
-    name: "New Jersey",
-  },
+  areaServed: [
+    { "@type": "State", name: "New Jersey" },
+    { "@type": "City", name: "New Providence" },
+    { "@type": "City", name: "Summit" },
+    { "@type": "City", name: "Millburn" },
+    { "@type": "City", name: "Chatham" },
+    { "@type": "City", name: "Basking Ridge" },
+    { "@type": "City", name: "Westfield" },
+    { "@type": "City", name: "Springfield" },
+    { "@type": "AdministrativeArea", name: "Somerset County" },
+    { "@type": "AdministrativeArea", name: "Union County" },
+    { "@type": "AdministrativeArea", name: "Morris County" },
+  ],
+  knowsAbout: [
+    "Home Health Care",
+    "Senior Care",
+    "Disabled Adult Care",
+    "Companion Care",
+    "Respite Care",
+    "Dementia Care",
+    "Alzheimer's Care",
+    "Personal Care Services",
+    "Activities of Daily Living",
+    "Post-Surgery Recovery Care",
+    "Holistic Health Care",
+  ],
+  serviceType: [
+    "Home Health Care",
+    "Personal Care",
+    "Companion Care",
+    "Respite Care",
+    "Live-In Care",
+    "24-Hour Home Care",
+    "Dementia and Alzheimer's Care",
+    "Post-Surgery Recovery Support",
+  ],
+  medicalSpecialty: [
+    "Geriatrics",
+    "Rehabilitation",
+    "Chronic Disease Management",
+    "Palliative Care",
+  ],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -113,7 +207,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
       <body className={`${manrope.variable} ${inter.variable} ${playwriteIreland.variable} h-full antialiased`} style={{ background: "#FCF8FF", color: "#4C4356" }}>
         <HeaderHeightProvider>
-          <UtilityBar />
+          <UtilityBar className="sticky top-0 z-40" />
           <Navbar />
         </HeaderHeightProvider>
         <main className="pt-[var(--header-height)] my-12">

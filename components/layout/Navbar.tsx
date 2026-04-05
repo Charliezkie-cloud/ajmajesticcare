@@ -47,7 +47,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav aria-label="Main navigation" className="bg-gray-100/75 border-b border-b-gray-200 backdrop-blur-xl py-6">
+      <nav aria-label="Main navigation" className={`bg-gray-100/75 border-b border-b-gray-200 backdrop-blur-xl py-6`}>
         <div className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto flex flex-row md:flex-row justify-between items-center gap-6 lg:gap-2">
           <Link href="/" aria-label="Go to homepage">
             <Image src={Logo} className="h-[40px] w-auto" alt="A & J Majestic Care" priority />

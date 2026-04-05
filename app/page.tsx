@@ -12,6 +12,7 @@ import ElderIcon from "@/public/icons/elder-icon.svg";
 import MedicalIcon from "@/public/icons/medical-icon.svg";
 import EducationIcon from "@/public/icons/education-icon.svg";
 import FocusIcon from "@/public/icons/focus-icon.svg";
+import Badge from "@/components/ui/Badge";
 
 // ========== BROCHURE PATH ==========
 
@@ -139,9 +140,9 @@ export default async function HomePage() {
                     <p>{service.body}</p>
                     <div>
                       {service.badges?.map((badge, index) => (
-                        <span key={`service-badge-item-${index}`} className="text-foreground bg-secondary/50 p-2 rounded-full px-6 text-xs font-bold">
+                        <Badge key={`service-badge-item-${index}`} variant="secondary" className="text-xs font-bold">
                           {badge}
-                        </span>
+                        </Badge>
                       ))}
                     </div>
                   </div>

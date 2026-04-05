@@ -29,7 +29,7 @@ const sizes = {
 
 export default function Button({ type = "button", variant = "primary", size = "md", className, href, download = false, disabled, onClick, children }: props) {
   const classes = [
-    "transition px-6 py-3 rounded-lg",
+    "transition px-6 py-3 rounded-lg text-center",
     variants[variant],
     sizes[size],
     className

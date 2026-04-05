@@ -14,10 +14,10 @@ export default function FinalCTASection({ verticalSpacing = true }: { verticalSp
               Contact us today for a free consultation and let us help you build a personalized care plan for your family.
             </p>
             <div className="flex flex-col sm:flex-row gap-2">
-              <Link href="/contact" title="Book a free senior care consultation — no hidden fees" className="transition bg-gray-100 hover:bg-gray-200 active:bg-gray-300 text-sm sm:text-md text-primary font-semibold px-6 py-4 rounded-lg shadow shadow-xl">
+              <Link href="/contact" title="Book a free senior care consultation — no hidden fees" className="transition bg-gray-100 hover:bg-gray-200 active:bg-gray-300 text-sm sm:text-md text-primary font-semibold px-6 py-4 rounded-lg shadow shadow-xl text-center">
                 Book Your Free Consultation
               </Link>
-              <Link href="/services" title="View our senior care services and care plans" className="transition bg-transparent hover:bg-gray-200/50 active:bg-gray-300/50 text-sm sm:text-md text-gray-200 border border-2 border-gray-200 font-semibold px-6 py-4 rounded-lg shadow shadow-xl">
+              <Link href="/services" title="View our senior care services and care plans" className="transition text-center bg-transparent hover:bg-gray-200/50 active:bg-gray-300/50 text-sm sm:text-md text-gray-200 border border-2 border-gray-200 font-semibold px-6 py-4 rounded-lg shadow shadow-xl">
                 View Our Services
               </Link>
             </div>
