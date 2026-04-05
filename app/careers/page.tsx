@@ -7,7 +7,7 @@ import CareersForm from "@/components/forms/CareersForm";
 
 // ========== APPLICATION FORM PATH ==========
 
-const applicationFormPath = "/CHHACNA-Application-Form.pdf";
+const applicationFormPath = "/pdfs/CHHACNA-Application-Form.pdf";
 
 // ========== APPLICATION FORM PATH ==========
 

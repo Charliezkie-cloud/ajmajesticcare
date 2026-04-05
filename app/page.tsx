@@ -15,7 +15,7 @@ import FocusIcon from "@/public/icons/focus-icon.svg";
 
 // ========== BROCHURE PATH ==========
 
-const brochurePath = "/A-J-MajesticCare-Brochure.pdf";
+const brochurePath = "/pdfs/A-J-MajesticCare-Brochure.pdf";
 
 // ========== BROCHURE PATH ==========
 
