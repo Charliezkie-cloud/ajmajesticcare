@@ -1,20 +1,18 @@
 import { FormState } from "@/components/forms/ContactForm";
 import { NextRequest, NextResponse } from "next/server";
-import { transporter } from "@/lib/services/nodemailer.services";
+import { sendMail } from "@/lib/services/nodemailer.services";
 import { readFileSync } from "node:fs";
 import path from "node:path";
+import sanitize from "@/lib/sanitizer";
 
-const receiverEmail = process.env.NEXT_RECEIVER_EMAIL;
-if (!receiverEmail) throw new Error("NEXT_RECEIVER_EMAIL is not defined");
+const RECEIVER_EMAIL = process.env.NEXT_RECEIVER_EMAIL!;
+if (!RECEIVER_EMAIL) throw new Error("NEXT_RECEIVER_EMAIL is not defined");
 
 const contactTemplatePath = path.join(process.cwd(), "public", "email_templates", "contact_template.html");
 const template = readFileSync(contactTemplatePath, "utf-8"); // cached at module level
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const ZIP_REGEX = /^\d{4,10}$/;
-
-const sanitize = (str: string) =>
-  str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 function validateFormBody(formState: FormState): string | boolean {
   if (!formState.full_name.trim())
@@ -63,12 +61,7 @@ export async function POST(req: NextRequest) {
     .replaceAll("{{SENDER_NAME}}", sanitize(data.full_name));
 
   try {
-    await transporter.sendMail({
-      from: "no-reply@ajmajesticcare.com",
-      to: receiverEmail,
-      subject: `New Contact Request from ${sanitize(data.full_name)}`,
-      html,
-    });
+    await sendMail(`New Contact Request from ${sanitize(data.full_name)}`, RECEIVER_EMAIL, html);
   } catch (err) {
     console.error("[sendMail error]", err);
     return NextResponse.json({ message: "Failed to send email. Please try again later." }, { status: 500 });
