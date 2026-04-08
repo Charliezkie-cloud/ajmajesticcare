@@ -11,16 +11,16 @@ export type ReviewFormData = {
 
 type ReviewFormProps = {
   onClose?: () => void;
-  onSubmit?: (data: ReviewFormData) => void | Promise<void>;
 }
 
-export default function ReviewForm({ onClose, onSubmit }: ReviewFormProps) {
+export default function ReviewForm({ onClose }: ReviewFormProps) {
   const [fullName, setFullName] = useState("");
   const [rating, setRating] = useState(0);
   const [hoveredRating, setHoveredRating] = useState(0);
   const [comment, setComment] = useState("");
   const [errors, setErrors] = useState<Partial<ReviewFormData>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitErrMessage, setSubmitErrMessage] = useState("");
 
   const validate = (): boolean => {
     const newErrors: Partial<ReviewFormData> = {};
@@ -38,13 +38,30 @@ export default function ReviewForm({ onClose, onSubmit }: ReviewFormProps) {
     if (!validate()) return;
 
     setIsSubmitting(true);
+
     try {
-      await onSubmit?.({ fullName, rating, comment });
+      const res = await fetch("/api/reviews", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ fullName, rating, comment })
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        setSubmitErrMessage(data.message);
+        return;
+      }
+
       setFullName("");
       setRating(0);
       setComment("");
       setErrors({});
       onClose?.();
+      setSubmitErrMessage("");
+    } catch (err) {
+      console.error(err instanceof Error ? err.message : err);
     } finally {
       setIsSubmitting(false);
     }
@@ -52,6 +69,12 @@ export default function ReviewForm({ onClose, onSubmit }: ReviewFormProps) {
 
   return (
     <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
+
+      {submitErrMessage && (
+        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+          <p className="text-sm font-medium text-center">{submitErrMessage}</p>
+        </div>
+      )}
 
       <div className="flex flex-col gap-1.5">
         <label className="font-manrope font-semibold text-sm text-gray-700">Full Name</label>

@@ -5,22 +5,17 @@ import { NextRequest, NextResponse } from "next/server";
 import sanitize from "@/lib/sanitizer";
 import path from "path";
 
-const PHONE_REGEX = /^\+?[0-9\s\-().]{7,20}$/;
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const NAME_REGEX = /^[a-zA-ZÀ-ÖØ-öø-ÿ\s'\-]+$/;
-
 const RECEIVER_EMAIL = process.env.NEXT_RECEIVER_EMAIL!;
 if (!RECEIVER_EMAIL) throw new Error("NEXT_RECEIVER_EMAIL is not defined");
 
-function loadTemplate(): string {
-  const templatePath = path.join(process.cwd(), "public", "email_templates", "careers_template.html");
-  try {
-    return readFileSync(templatePath, "utf-8");
-  } catch {
-    throw new Error(`[careers] Email template not found at: ${templatePath}`);
-  }
-}
+const careersTemplatePath = path.join(process.cwd(), "public", "email_templates", "careers_template.html");
+const template = readFileSync(careersTemplatePath, "utf-8");
 
+const PHONE_REGEX = /^\+?[0-9\s\-().]{7,20}$/;
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const NAME_REGEX = /^[a-zA-ZÀ-ÖØ-öø-ÿ\s'\-.]+$/;
+
+// ========== VALIDATE FORM BODY ==========
 function validateFormBody(data: Partial<FormFields>): string | null {
   const full_name = data.full_name?.trim() ?? "";
   if (!full_name)
@@ -65,6 +60,7 @@ function validateFormBody(data: Partial<FormFields>): string | null {
   return null;
 }
 
+// ========== POST METHOD ==========
 export async function POST(req: NextRequest) {
   if (!req.headers.get("content-type")?.includes("application/json"))
     return NextResponse.json({ message: "Content-Type must be application/json." }, { status: 415 });
@@ -82,14 +78,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ message: validationError }, { status: 422 });
 
   const safe = data as FormFields;
-
-  let template: string;
-  try {
-    template = loadTemplate();
-  } catch (err) {
-    console.error(err);
-    return NextResponse.json({ message: "Something went wrong." }, { status: 500 });
-  }
 
   const html = template
     .replaceAll("{{FULL_NAME}}", sanitize(safe.full_name))

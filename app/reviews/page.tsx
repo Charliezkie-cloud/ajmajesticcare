@@ -150,7 +150,6 @@ export default function ReviewsPage() {
       <Modal show={reviewModal} onClose={onReviewModalClose} title="Share Your Experience">
         <ReviewForm
           onClose={onReviewModalClose}
-          onSubmit={onReviewSubmit}
         />
       </Modal>
 

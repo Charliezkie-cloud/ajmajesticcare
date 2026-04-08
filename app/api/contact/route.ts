@@ -14,6 +14,7 @@ const template = readFileSync(contactTemplatePath, "utf-8"); // cached at module
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const ZIP_REGEX = /^\d{4,10}$/;
 
+// ========== VALIDATE FORM BODY ==========
 function validateFormBody(formState: FormState): string | boolean {
   if (!formState.full_name.trim())
     return "Full name is required.";
@@ -39,6 +40,7 @@ function validateFormBody(formState: FormState): string | boolean {
   return true;
 }
 
+// ========== POST METHOD ==========
 export async function POST(req: NextRequest) {
   let data: FormState;
 

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>New Review Email</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+	<style>
+		* {
+			font-family: 'Inter', Arial, Helvetica, sans-serif;
+		}
+	</style>
+</head>
+
+<body style="margin: 0; padding: 0; background-color: #EDEDF2; font-family: 'Inter', Arial, Helvetica, sans-serif;">
+
+	<!-- Wrapper -->
+	<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #EDEDF2;">
+		<tr>
+			<td align="center" style="padding: 40px 16px;">
+
+				<!-- Card -->
+				<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
+					style="max-width: 600px; background-color: #FFFFFF; border-radius: 12px; overflow: hidden; border: 1px solid #DCDCE6;">
+
+					<!-- Header -->
+					<tr>
+						<td style="background-color: #8A06FE; padding: 40px 40px 36px 40px; text-align: center;">
+							<p
+								style="margin: 0 0 4px 0; font-size: 20px; font-weight: 700; color: #FFFFFF; letter-spacing: -0.3px; line-height: 1.2;">
+								A &amp; J Majestic Care</p>
+							<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center"
+								style="margin-bottom: 20px;">
+								<tr>
+									<td style="background-color: rgba(255,255,255,0.12); border-radius: 100px; padding: 6px 16px;">
+										<p
+											style="margin: 0; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; color: rgba(255,255,255,0.85); text-transform: uppercase;">
+											New Review Received</p>
+									</td>
+								</tr>
+							</table>
+							<h1
+								style="margin: 0 0 10px 0; font-size: 30px; font-weight: 700; color: #FFFFFF; line-height: 1.2; letter-spacing: -0.5px;">
+								You've Got a Review!</h1>
+							<p style="margin: 0; font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.6;">A client just left
+								a review for your service.<br />Their feedback is listed below.</p>
+						</td>
+					</tr>
+
+					<!-- Rating Banner -->
+					<tr>
+						<td
+							style="background-color: #F7F7FB; padding: 24px 40px; text-align: center; border-bottom: 1px solid #DCDCE6;">
+							<p
+								style="margin: 0 0 6px 0; font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #8888A0; text-transform: uppercase;">
+								Overall Rating</p>
+							<p style="margin: 0 0 6px 0; font-size: 32px; line-height: 1;">{{RATING}} OUT OF 5</p>
+						</td>
+					</tr>
+
+					<!-- Body -->
+					<tr>
+						<td style="padding: 36px 40px;">
+
+							<!-- Section Label -->
+							<p
+								style="margin: 0 0 24px 0; font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #8A06FE; text-transform: uppercase;">
+								Review Details</p>
+
+							<!-- Full Name -->
+							<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
+								style="margin-bottom: 16px;">
+								<tr>
+									<td
+										style="background-color: #F7F7FB; border-radius: 8px; border-left: 3px solid #8A06FE; padding: 14px 18px;">
+										<p
+											style="margin: 0 0 4px 0; font-size: 11px; font-weight: 700; letter-spacing: 1px; color: #8A06FE; text-transform: uppercase;">
+											Reviewed By</p>
+										<p style="margin: 0; font-size: 15px; color: #1E1E2A; font-weight: 500;">{{FULL_NAME}}</p>
+									</td>
+								</tr>
+							</table>
+
+							<!-- Comment -->
+							<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
+								style="margin-bottom: 0;">
+								<tr>
+									<td
+										style="background-color: #F7F7FB; border-radius: 8px; border-left: 3px solid #06C1FE; padding: 14px 18px;">
+										<p
+											style="margin: 0 0 8px 0; font-size: 11px; font-weight: 700; letter-spacing: 1px; color: #06C1FE; text-transform: uppercase;">
+											Comment</p>
+										<p style="margin: 0; padding: 0; font-size: 15px; color: #3A3A4A; line-height: 1.7; white-space: pre-wrap; text-indent: 0;">{{COMMENT}}</p>
+									</td>
+								</tr>
+							</table>
+
+						</td>
+					</tr>
+
+					<!-- Divider -->
+					<tr>
+						<td style="padding: 0 40px;">
+							<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+								<tr>
+									<td style="border-top: 1px solid #DCDCE6; font-size: 0; line-height: 0;">&nbsp;</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+
+					<!-- Footer -->
+					<tr>
+						<td style="padding: 24px 40px 32px 40px; text-align: center;">
+							<p style="margin: 0 0 6px 0; font-size: 12px; color: #AAAABC;">This email was sent automatically from your
+								reviews system.</p>
+							<p style="margin: 0; font-size: 12px; color: #CBCBD8;">Do not reply directly to this message.</p>
+						</td>
+					</tr>
+
+				</table>
+				<!-- /Card -->
+
+			</td>
+		</tr>
+	</table>
+	<!-- /Wrapper -->
+
+</body>
+
+</html>
