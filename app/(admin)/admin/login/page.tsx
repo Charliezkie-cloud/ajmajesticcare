@@ -56,7 +56,7 @@ export default function AdminLoginPage() {
     return Object.values(errors).every(msg => msg === null);
   }
 
-  async function handleLoginSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleLoginSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     
     if (!validateLoginForm()) return;
