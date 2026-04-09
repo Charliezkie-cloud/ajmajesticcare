@@ -15,9 +15,9 @@ type props = {
 }
 
 const variants = {
-  primary: "bg-primary/5 hover:bg-primary/10 outline-primary/25 focus:outline-2 focus:outline-offset-2 focus:outline-primary/25 text-foreground",
-  secondary: "bg-secondary/5 hover:bg-secondary/10 outline-secondary/25 focus:outline-2 focus:outline-offset-2 focus:outline-secondary/25 text-foreground",
-  tertiary: "bg-tertiary/5 hover:bg-tertiary/10 outline-tertiary/25 focus:outline-2 focus:outline-offset-2 focus:outline-tertiary/25 text-foreground",
+  primary: "bg-primary/5 hover:bg-primary/7.5 outline-primary/25 focus:outline-2 focus:outline-offset-2 focus:outline-primary/25 text-foreground",
+  secondary: "bg-secondary/5 hover:bg-secondary/7.5 outline-secondary/25 focus:outline-2 focus:outline-offset-2 focus:outline-secondary/25 text-foreground",
+  tertiary: "bg-tertiary/5 hover:bg-tertiary/7.5 outline-tertiary/25 focus:outline-2 focus:outline-offset-2 focus:outline-tertiary/25 text-foreground",
 };
 
 const sizes = {
