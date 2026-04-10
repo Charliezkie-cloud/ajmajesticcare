@@ -1,10 +1,10 @@
 "use client"
 
-import { LuMoveRight, LuShieldCheck } from "react-icons/lu";
+import { LuLoaderCircle, LuMoveRight, LuShieldCheck } from "react-icons/lu";
 import { useEffect, useState } from "react";
-import { useAuth } from "@/hooks/useAuth";
+import { supabase } from "@/lib/supabase/supabase.client";
+import { User } from "@supabase/supabase-js";
 import { redirect } from "next/navigation";
-import { supabase } from "@/lib/supabase/SupabaseClient";
 
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
@@ -25,10 +25,13 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MIN_PASSWORD_LENGTH = 8;
 
 export default function AdminLoginPage() {
-  const auth = useAuth();
+  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState<User | null>(null);
+
   const [loginForm, setLoginForm] = useState<LoginFormFields>({ email: "", password: "" });
   const [loginFieldsStatus, setLoginFieldsStatus] = useState<FormFieldsStatus>({ email: null, password: null });
   const [loginStatus, setLoginStatus] = useState<string | null>(null);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
 
   function validateLoginForm(): boolean {
     const errors: FormFieldsStatus = {
@@ -58,21 +61,44 @@ export default function AdminLoginPage() {
 
   async function handleLoginSubmit(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
-    
-    if (!validateLoginForm()) return;
+
+    setIsLoggingIn(true);
+    if (!validateLoginForm())
+      return setIsLoggingIn(false);
 
     const { error } = await supabase.auth.signInWithPassword(loginForm);
     if (error) {
       setLoginStatus(error.message);
-      return;
+      return setIsLoggingIn(false);
     }
 
     setLoginStatus(null);
+    setIsLoggingIn(false);
+    redirect("/admin");
   }
 
   useEffect(() => {
-    if (auth.user) return redirect("/admin");
-  }, [auth.user])
+    async function getUser() {
+      const { data: { user } } = await supabase.auth.getUser();
+    
+      if (user) setUser(user);
+
+      setIsLoading(false);
+    }
+
+    getUser();
+  }, []);
+
+  useEffect(() => {
+    if (!isLoading && user) return redirect("/admin");
+  }, [isLoading, user]);
+
+  if (isLoading)
+    return (
+      <section className="min-h-screen flex items-center justify-center">
+        <LuLoaderCircle className="size-12 animate-spin" />
+      </section>
+    )
 
   return (
     <section className="min-h-screen flex flex-col justify-center items-center p-4 sm:p-6 md:p-8">
@@ -114,7 +140,11 @@ export default function AdminLoginPage() {
             </div>
             <Link href="/admin/forgot_password" className="text-primary hover:underline font-semibold text-sm sm:text-base">Forgot password?</Link>
           </div>
-          <Button type="submit" variant="primary" size="lg" className="flex flex-row gap-2 items-center justify-center font-semibold mt-2 w-full">Sign In <LuMoveRight className="size-5" /></Button>
+          <Button type="submit" variant="primary" size="lg" className="flex flex-row gap-2 items-center justify-center font-semibold mt-2 w-full">Sign In {isLoggingIn ? (
+            <LuLoaderCircle className="size-5 animate-spin" />
+          ) : (
+            <LuMoveRight className="size-5" />
+          )}</Button>
         </form>
         
         <hr className="opacity-25"/>

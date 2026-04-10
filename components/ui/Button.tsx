@@ -3,7 +3,7 @@ import Link from "next/link";
 
 type props = {
   type?: "button" | "submit" | "reset";
-  variant?: "primary" | "secondary" | "inverted" | "outlined";
+  variant?: "primary" | "secondary" | "inverted" | "outlined" | "ghost";
   size?: "sm" | "md" | "lg" | "auto";
   className?: string
   href?: string
@@ -18,6 +18,7 @@ const variants = {
   secondary: "bg-gray-200 text-gray-800 hover:bg-gray-300/75 active:bg-gray-300/50",
   inverted: "bg-neutral/90 text-gray-200 hover:bg-neutral/70 active:bg-neutral/50",
   outlined: "bg-transparent text-gray-800 border hover:bg-gray-200 active:bg-gray-300",
+  ghost: "bg-transparent text-gray-800 hover:bg-gray-200 active:bg-gray-300",
 };
 
 const sizes = {
