@@ -2,7 +2,7 @@ import { ReviewFormData } from "@/components/forms/ReviewForm";
 import { sendMail } from "@/lib/services/nodemailer.services";
 import { readFileSync } from "fs";
 import { NextRequest, NextResponse } from "next/server";
-import sanitize from "@/lib/sanitizer";
+import sanitize from "@/lib/misc/sanitizer";
 import path from "path";
 
 const RECEIVER_EMAIL = process.env.NEXT_RECEIVER_EMAIL!;

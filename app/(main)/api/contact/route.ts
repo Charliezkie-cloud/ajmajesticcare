@@ -5,7 +5,7 @@ import { readFileSync } from "node:fs";
 import { insertContact } from "@/lib/services/contact.services";
 
 import path from "node:path";
-import sanitize from "@/lib/sanitizer";
+import sanitize from "@/lib/misc/sanitizer";
 
 const RECEIVER_EMAIL = process.env.NEXT_RECEIVER_EMAIL!;
 if (!RECEIVER_EMAIL) throw new Error("NEXT_RECEIVER_EMAIL is not defined");
