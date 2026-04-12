@@ -8,7 +8,7 @@ import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
 
-export type FormFields = {
+export type CareerFormFields = {
   full_name: string;
   phone_number: string;
   email_address: string;
@@ -16,11 +16,11 @@ export type FormFields = {
   experience: string;
 };
 
-type FormErrors = Record<keyof FormFields, string>;
+type FormErrors = Record<keyof CareerFormFields, string>;
 
 type FormStatus = "idle" | "loading" | "success" | "error";
 
-const initialFields: FormFields = {
+const initialFields: CareerFormFields = {
   full_name: "",
   phone_number: "",
   email_address: "",
@@ -36,7 +36,7 @@ const initialErrors: FormErrors = {
   experience: "",
 };
 
-function validate(fields: FormFields): FormErrors {
+function validate(fields: CareerFormFields): FormErrors {
   const errors = { ...initialErrors };
 
   if (!fields.full_name.trim())
@@ -66,7 +66,7 @@ function hasErrors(errors: FormErrors): boolean {
 }
 
 export default function CareersForm() {
-  const [fields, setFields] = useState<FormFields>(initialFields);
+  const [fields, setFields] = useState<CareerFormFields>(initialFields);
   const [errors, setErrors] = useState<FormErrors>(initialErrors);
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState("");

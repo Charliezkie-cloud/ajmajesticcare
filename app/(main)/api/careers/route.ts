@@ -1,7 +1,8 @@
-import { FormFields } from "@/components/forms/CareersForm";
+import { CareerFormFields } from "@/components/forms/CareersForm";
 import { sendMail } from "@/lib/services/nodemailer.services";
 import { readFileSync } from "fs";
 import { NextRequest, NextResponse } from "next/server";
+
 import sanitize from "@/lib/misc/sanitizer";
 import path from "path";
 
@@ -16,7 +17,7 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const NAME_REGEX = /^[a-zA-ZÀ-ÖØ-öø-ÿ\s'\-.]+$/;
 
 // ========== VALIDATE FORM BODY ==========
-function validateFormBody(data: Partial<FormFields>): string | null {
+function validateFormBody(data: Partial<CareerFormFields>): string | null {
   const full_name = data.full_name?.trim() ?? "";
   if (!full_name)
     return "Full name is required.";
@@ -65,7 +66,7 @@ export async function POST(req: NextRequest) {
   if (!req.headers.get("content-type")?.includes("application/json"))
     return NextResponse.json({ message: "Content-Type must be application/json." }, { status: 415 });
 
-  let data: Partial<FormFields>;
+  let data: Partial<CareerFormFields>;
 
   try {
     data = await req.json();
@@ -77,7 +78,7 @@ export async function POST(req: NextRequest) {
   if (validationError)
     return NextResponse.json({ message: validationError }, { status: 422 });
 
-  const safe = data as FormFields;
+  const safe = data as CareerFormFields;
 
   const html = template
     .replaceAll("{{FULL_NAME}}", sanitize(safe.full_name))
