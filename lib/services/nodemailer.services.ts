@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import sanitize from "../sanitizer";
+import sanitize from "../misc/sanitizer";
 
 export const transporter = nodemailer.createTransport({
   service: "gmail",

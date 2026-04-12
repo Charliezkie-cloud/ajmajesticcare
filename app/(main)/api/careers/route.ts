@@ -2,6 +2,7 @@ import { CareerFormFields } from "@/components/forms/CareersForm";
 import { sendMail } from "@/lib/services/nodemailer.services";
 import { readFileSync } from "fs";
 import { NextRequest, NextResponse } from "next/server";
+import { insertCareer } from "@/lib/services/careers.services";
 
 import sanitize from "@/lib/misc/sanitizer";
 import path from "path";
@@ -86,6 +87,19 @@ export async function POST(req: NextRequest) {
     .replaceAll("{{EMAIL_ADDRESS}}", sanitize(safe.email_address))
     .replaceAll("{{ADDRESS}}", sanitize(safe.address))
     .replaceAll("{{EXPERIENCE}}", sanitize(safe.experience));
+
+  try {
+    await insertCareer({
+      full_name: data.full_name ?? "",
+      phone_number: data.phone_number ?? "",
+      email_address: data.email_address ?? "",
+      address: data.address ?? "",
+      experience: data.experience ?? ""
+    });
+  } catch (err) {
+    console.error("[database error]", err);
+    return NextResponse.json({ message: "Something went wrong with the database, please try again later." }, { status: 500 });
+  }
 
   try {
     await sendMail(`New Application from ${sanitize(safe.full_name)}`, RECEIVER_EMAIL, html);
