@@ -4,7 +4,7 @@ import { LuLoaderCircle, LuMoveRight, LuShieldCheck } from "react-icons/lu";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase/supabase.client";
 import { User } from "@supabase/supabase-js";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
@@ -25,6 +25,8 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MIN_PASSWORD_LENGTH = 8;
 
 export default function AdminLoginPage() {
+  const router = useRouter();
+
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState<User | null>(null);
 
@@ -74,9 +76,10 @@ export default function AdminLoginPage() {
 
     setLoginStatus(null);
     setIsLoggingIn(false);
-    redirect("/admin");
+    router.push("/admin");
   }
 
+  // ========== GET CURRENT USER ==========
   useEffect(() => {
     async function getUser() {
       const { data: { user } } = await supabase.auth.getUser();
@@ -89,9 +92,10 @@ export default function AdminLoginPage() {
     getUser();
   }, []);
 
+  // ========== CHECK IF LOGGED IN ==========
   useEffect(() => {
-    if (!isLoading && user) return redirect("/admin");
-  }, [isLoading, user]);
+    if (!isLoading && user) return router.push("/admin");
+  }, [isLoading, user, router]);
 
   if (isLoading)
     return (
