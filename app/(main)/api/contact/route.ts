@@ -64,13 +64,23 @@ export async function POST(req: NextRequest) {
     .replaceAll("{{EXTRA_COMMENTS}}", sanitize(data.comments ?? ""))
     .replaceAll("{{SENDER_NAME}}", sanitize(data.full_name));
 
+  // ===== INSERT TO DATABASE =====
+  try {
+    await insertContact({
+      full_name: data.full_name,
+      phone_number: data.phone_number,
+      email_address: data.email_address,
+      zip_code: Number(data.zip_code),
+      message: data.comments,
+    });
+  } catch (err) {
+    console.error("[database error]", err);
+    return NextResponse.json({ message: "Something went wrong with the database, please try again later." }, { status: 500 });
+  }
+
+  // ===== SEND EMAIL =====
   try {
     await sendMail(`New Contact Request from ${sanitize(data.full_name)}`, RECEIVER_EMAIL, html);
-    await insertContact({
-      ...data,
-      zip_code: Number(data.zip_code),
-      status: "pending"
-    });
   } catch (err) {
     console.error("[sendMail error]", err);
     return NextResponse.json({ message: "Failed to send email. Please try again later." }, { status: 500 });
