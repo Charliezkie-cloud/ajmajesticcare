@@ -2,7 +2,7 @@ import { ReactNode } from "react"
 
 type props = {
   variant?: "primary" | "secondary" | "tertiary" | "neutral";
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg" | "auto";
   role?: "alert" | "alertdialog" | "application" | "article" | "banner" | "button" | "cell" | "checkbox" | "columnheader" | "combobox" | "complementary" | "contentinfo" | "definition" | "dialog" | "directory" | "document" | "feed" | "figure" | "form" | "grid" | "gridcell" | "group" | "heading" | "img" | "link" | "list" | "listbox" | "listitem" | "log" | "main" | "marquee" | "math" | "menu" | "menubar" | "menuitem" | "menuitemcheckbox" | "menuitemradio" | "navigation" | "none" | "note" | "option" | "presentation" | "progressbar" | "radio" | "radiogroup" | "region" | "row" | "rowgroup" | "rowheader" | "scrollbar" | "search" | "searchbox" | "separator" | "slider" | "spinbutton" | "status" | "switch" | "tab" | "table" | "tablist" | "tabpanel" | "term" | "textbox" | "timer" | "toolbar" | "tooltip" | "tree" | "treegrid" | "treeitem";
   className?: string;
   children?: ReactNode;
@@ -19,6 +19,7 @@ const sizes = {
   sm: "text-sm",
   md: "text-md",
   lg: "text-lg",
+  auto: "text-sm sm:text-md"
 };
 
 export default function Badge({ variant = "primary", size = "md", role, className, children }: props) {
