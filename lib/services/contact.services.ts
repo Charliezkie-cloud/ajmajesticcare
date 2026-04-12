@@ -11,16 +11,14 @@ export async function getAllContacts(): Promise<Contact[]> {
   return data;
 }
 
-export async function insertContact(dataToInsert: ContactInsert): Promise<Contact> {
-  const { data, error } = await supabase
+export async function insertContact(dataToInsert: ContactInsert): Promise<boolean> {
+  const { error } = await supabase
     .from("contacts")
-    .insert(dataToInsert)
-    .select()
-    .single();
+    .insert(dataToInsert);
 
   if (error) throw new Error(error.message);
 
-  return data;
+  return true;
 }
 
 export async function getTotalContacts(): Promise<number | null> {
