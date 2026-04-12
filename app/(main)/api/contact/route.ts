@@ -1,7 +1,9 @@
-import { FormState } from "@/components/forms/ContactForm";
+import { ContactFormState } from "@/components/forms/ContactForm";
 import { NextRequest, NextResponse } from "next/server";
 import { sendMail } from "@/lib/services/nodemailer.services";
 import { readFileSync } from "node:fs";
+import { insertContact } from "@/lib/services/contact.services";
+
 import path from "node:path";
 import sanitize from "@/lib/sanitizer";
 
@@ -15,7 +17,7 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const ZIP_REGEX = /^\d{4,10}$/;
 
 // ========== VALIDATE FORM BODY ==========
-function validateFormBody(formState: FormState): string | boolean {
+function validateFormBody(formState: ContactFormState): string | boolean {
   if (!formState.full_name.trim())
     return "Full name is required.";
   else if (formState.full_name.trim().length < 2)
@@ -42,7 +44,7 @@ function validateFormBody(formState: FormState): string | boolean {
 
 // ========== POST METHOD ==========
 export async function POST(req: NextRequest) {
-  let data: FormState;
+  let data: ContactFormState;
 
   try {
     data = await req.json();
@@ -64,6 +66,11 @@ export async function POST(req: NextRequest) {
 
   try {
     await sendMail(`New Contact Request from ${sanitize(data.full_name)}`, RECEIVER_EMAIL, html);
+    await insertContact({
+      ...data,
+      zip_code: Number(data.zip_code),
+      status: "pending"
+    });
   } catch (err) {
     console.error("[sendMail error]", err);
     return NextResponse.json({ message: "Failed to send email. Please try again later." }, { status: 500 });
