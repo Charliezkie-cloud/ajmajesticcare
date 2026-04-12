@@ -1,0 +1,5 @@
+import { Database } from "./database.types";
+
+// CONTACT TYPES
+export type Contact = Database["public"]["Tables"]["contacts"]["Row"];
+export type ContactInsert = Database["public"]["Tables"]["contacts"]["Insert"];
