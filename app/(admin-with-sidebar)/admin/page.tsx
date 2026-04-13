@@ -1,14 +1,13 @@
 "use client"
 
-import { supabase } from "@/lib/supabase/supabase.client"
 import { useEffect, useState } from "react";
-import { User } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
-import { LuCalendarClock, LuChevronRight, LuLoaderCircle, LuMail, LuStar, LuUserPlus } from "react-icons/lu";
+import { LuCalendarClock, LuChevronRight, LuMail, LuStar, LuUserPlus } from "react-icons/lu";
 import { getRecentContacts, getTotalContacts, getTotalPendingContacts } from "@/lib/services/contact.services";
 import { toStringDate } from "@/lib/misc/dateFormatter";
 import { getRecentCareers, getTotalCareers } from "@/lib/services/careers.services";
 import { Career, Contact } from "@/lib/types/table.types";
+import { getTotalReviews } from "@/lib/services/reviews.services";
 
 import Link from "next/link";
 import Badge from "@/components/ui/Badge";
@@ -16,9 +15,6 @@ import Button from "@/components/ui/Button";
 
 export default function AdminHomePage() {
   const router = useRouter();
-
-  const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState<User | null>(null);
 
   // Contacts
   const [totalContacts, setTotalContacts] = useState<number>(0);
@@ -28,13 +24,14 @@ export default function AdminHomePage() {
   // Careers
   const [totalCareers, setTotalCareers] = useState<number>(0);
   const [recentCareers, setRecentCareers] = useState<Career[] | null>(null);
+  
+  // Reviews
+  const [totalReviews, setTotalReviews] = useState<number>(0);
 
   /**
    * Get total rows of each tables
    */
   useEffect(() => {
-    if (!isLoading && !user) return router.push("/admin/login");
-
     /**
      * Fetch total contacts
      */
@@ -100,44 +97,29 @@ export default function AdminHomePage() {
       }
     }
 
+    /**
+     * Fetch total reviews
+     */
+    async function fetchTotalReviews() {
+      try {
+        const res = await getTotalReviews();
+
+        setTotalReviews(res ?? 0);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
     // Counts
     fetchTotalContacts();
     fetchTotalPendingContacts();
     fetchTotalCareers();
+    fetchTotalReviews();
 
     // Recent Data
     fetchRecentContacts();
     fetchRecentCareers();
-  }, [isLoading, user, router]);
-
-  /**
-   * Get current user
-   */
-  useEffect(() => {
-    async function getUser() {
-      const { data: { user } } = await supabase.auth.getUser();
-
-      if (user) setUser(user);
-
-      setIsLoading(false);
-    }
-
-    getUser();
   }, []);
-
-  /**
-   * Check if logged in
-   */
-  useEffect(() => {
-    if (!isLoading && !user) return router.push("/admin/login");
-  }, [isLoading, user, router]);
-
-  if (isLoading)
-    return (
-      <section className="min-h-screen flex items-center justify-center">
-        <LuLoaderCircle className="size-12 animate-spin" />
-      </section>
-    )
 
   return (
     <>
@@ -175,7 +157,7 @@ export default function AdminHomePage() {
                 <LuStar className="text-tertiary size-6 md:size-8" />
               </div>
             ),
-            data: 0
+            data: totalReviews
           },
           {
             title: "Pending Consultations",

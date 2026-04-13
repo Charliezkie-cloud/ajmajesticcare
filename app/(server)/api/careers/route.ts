@@ -98,11 +98,11 @@ export async function POST(req: NextRequest) {
 
   try {
     await insertCareer({
-      full_name: data.full_name ?? "",
-      phone_number: data.phone_number ?? "",
-      email_address: data.email_address ?? "",
-      address: data.address ?? "",
-      experience: data.experience ?? ""
+      full_name: sanitize(safe.full_name),
+      phone_number: sanitize(safe.phone_number),
+      email_address: sanitize(safe.email_address),
+      address: sanitize(safe.address),
+      experience: sanitize(safe.experience)
     });
   } catch (err) {
     console.error("[database error]", err);

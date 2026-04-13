@@ -75,11 +75,11 @@ export async function POST(req: NextRequest) {
   // ===== INSERT TO DATABASE =====
   try {
     await insertContact({
-      full_name: data.full_name,
-      phone_number: data.phone_number,
-      email_address: data.email_address,
+      full_name: sanitize(data.full_name),
+      phone_number: sanitize(data.phone_number),
+      email_address: sanitize(data.email_address),
       zip_code: Number(data.zip_code),
-      message: data.comments,
+      message: sanitize(data.comments),
     });
   } catch (err) {
     console.error("[database error]", err);
