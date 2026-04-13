@@ -43,7 +43,8 @@ export default function AdminSideBar({ onSignOut }: props) {
   const [offcanvas, setOffcanvas] = useState(false);
 
   function toggleOffcanvas() {
-    setOffcanvas(prev => !prev);
+    if (isMobile)
+      setOffcanvas(prev => !prev);
   }
 
   useEffect(() => {
