@@ -1,34 +1,13 @@
 "use client"
 
-import ReviewForm, { ReviewFormData } from "@/components/forms/ReviewForm";
+import { Review } from "@/lib/types/table.types";
+import { useEffect, useState } from "react";
+import { BsStarFill } from "react-icons/bs"
+import { LuLoaderCircle } from "react-icons/lu";
+
+import ReviewForm from "@/components/forms/ReviewForm";
 import Modal from "@/components/ui/Modal";
 
-import { useState } from "react";
-import { BsStarFill } from "react-icons/bs"
-
-const reviews = [
-  {
-    user: "T. L.",
-    role: "Verified Family Member",
-    rating: 5,
-    date: new Date("October 1, 2025"),
-    comment: "We brought in A&J to provide 24x7 care for my elderly father after an unfortunate incident with a prior caregiver. They moved very quickly to put together a full schedule of top quality caregivers. They have been flexible, responsive and have ensured coverage whenever there are changes in the schedule."
-  },
-  {
-    user: "Melanie Huashuayo",
-    role: "Granddaughter",
-    rating: 5,
-    date: new Date("September 1, 2025"),
-    comment: "The care my grandmother receives from A & J Majestic Care has been amazing. She looks forward to her visits and feels safe and comfortable. It's such a comfort knowing someone reliable is looking after her each day."
-  },
-  {
-    user: "Venus Carandang",
-    role: "Family Liaison",
-    rating: 5,
-    date: new Date("March 31, 2022"),
-    comment: "This agency helped a lot with my nana. The care they provided was excellent and the staff were friendly and accommodating. Especially Maria was very helpful assisting me on the phone with my inquires."
-  }
-];
 
 const avatarColors = [
   "bg-violet-200 text-violet-700",
@@ -50,25 +29,40 @@ function getInitials(name: string): string {
 export default function ReviewsPage() {
   const [reviewModal, setReviewModal] = useState(false);
 
-  function onReviewModalClose() { setReviewModal(false); }
+  // Page state
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  async function onReviewSubmit(data: ReviewFormData) {
-    try {
-      const res = await fetch("/api/reviews", {
-        method: "POST",
-        body: JSON.stringify(data)
-      });
+  // Reviews
+  const [reviews, setReviews] = useState<Review[]>([]);
 
-      if (!res.ok) {
-        console.error("Something went wrong :(");
-        return;
+  /**
+   * Fetch reviews
+   */
+  useEffect(() => {
+    async function fetchReviews() {
+      try {
+        const res = await fetch("/api/reviews", { method: "GET" });
+        const json = await res.json();
+
+        if (!res.ok)
+          return setError(json.message);
+        setReviews(json);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setIsLoading(false);
       }
-    } catch (error) {
-      if (error instanceof Error)
-        console.error(error.message);
-      else
-        console.error(error);
     }
+
+    fetchReviews();
+  }, []);
+
+  /**
+   * Close review form modal
+   */
+  function onReviewModalClose() {
+    setReviewModal(false);
   }
 
   return (
@@ -90,42 +84,52 @@ export default function ReviewsPage() {
       {/* Reviews section */}
       <section id="reviews" className="my-12 py-12" aria-label="Customer Reviews">
         <div className="max-w-7xl mx-4 md:mx-6 lg:mx-8 xl:mx-auto">
-          <div className="flex flex-col md:flex-row justify-center gap-6">
 
-            {reviews.map((review, index) => (
-              <article key={`review-item-${index}`} className="w-full md:w-md bg-white rounded-2xl shadow-2xl p-8 md:p-12" itemScope itemType="https://schema.org/Review">
-                <div className="flex flex-col gap-6 h-full">
+          {error && (
+            <div className="bg-red-50 border border-red-300 rounded-2xl shadow-xl flex items-center justify-center p-4 m-4">
+              <p className="text-red-500 font-semibold">{error}</p>
+            </div>
+          )}
 
-                  <div className="inline-flex gap-2" itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
-                    <meta itemProp="ratingValue" content={review.rating.toString()} />
-                    <meta itemProp="bestRating" content="5" />
+          {isLoading ? (
+            <div className="flex justify-center items-center">
+              <LuLoaderCircle className="size-12 animate-spin" />
+            </div>
+          ) : (
+              <div className="flex flex-col md:flex-row justify-center gap-6">
 
-                    {Array.from({ length: review.rating }).map((_, starIndex) => (
-                      <BsStarFill key={`review-item-${index}-${starIndex}`} className="text-yellow-400 text-2xl" />
-                    ))}
-                  </div>
+                {reviews.map((review, index) => (
+                  <article key={`review-item-${index}`} className="w-full md:w-md bg-white rounded-2xl shadow-2xl p-8 md:p-12" itemScope itemType="https://schema.org/Review">
+                    <div className="flex flex-col gap-6 h-full">
 
-                  <p itemProp="reviewBody">{review.comment}</p>
+                      <div className="inline-flex gap-2" itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
+                        <meta itemProp="ratingValue" content={review.rating.toString()} />
+                        <meta itemProp="bestRating" content="5" />
 
-                  <div className="mt-auto space-y-6">
-                    <hr className="border-gray-100" />
-
-                    <div className="flex flex-row items-center gap-4" itemProp="author" itemScope itemType="https://schema.org/Person">
-                      <div className={`rounded-full size-12 flex items-center justify-center font-bold text-sm shrink-0 ${avatarColors[index % avatarColors.length]}`} aria-hidden="true">
-                        {getInitials(review.user)}
+                        {Array.from({ length: review.rating }).map((_, starIndex) => (
+                          <BsStarFill key={`review-item-${index}-${starIndex}`} className="text-yellow-400 text-2xl" />
+                        ))}
                       </div>
-                      <div className="space-y-0.5">
-                        <h2 className="font-manrope text-black font-bold leading-tight" itemProp="name">{review.user}</h2>
-                        <p className="opacity-50 text-sm">{review.role}</p>
+
+                      <p itemProp="reviewBody">{review.comment}</p>
+
+                      <div className="mt-auto space-y-6">
+                        <hr className="border-gray-100" />
+
+                        <div className="flex flex-row items-center gap-4" itemProp="author" itemScope itemType="https://schema.org/Person">
+                          <div className={`rounded-full size-12 flex items-center justify-center font-bold text-sm shrink-0 ${avatarColors[index % avatarColors.length]}`} aria-hidden="true">
+                            {getInitials(review.full_name)}
+                          </div>
+                          <h2 className="font-manrope text-black font-bold leading-tight" itemProp="name">{review.full_name}</h2>
+                        </div>
                       </div>
+
                     </div>
-                  </div>
+                  </article>
+                ))}
 
-                </div>
-              </article>
-            ))}
-
-          </div>
+              </div>
+          )}
         </div>
       </section>
 
