@@ -47,24 +47,24 @@ export default function AdminSideBar({ onSignOut }: props) {
   }
 
   useEffect(() => {
-    function turnOnOffcanvas() {
+    function openOffcanvas() {
       setOffcanvas(true);
     }
 
-    function turnOffOffcanvas() {
+    function closeOffcanvas() {
       setOffcanvas(false);
     }
 
     if (isMobile)
-      turnOffOffcanvas();
+      closeOffcanvas();
     else
-      turnOnOffcanvas();
+      openOffcanvas();
   }, [isMobile]);
 
   return (
-    <>
-      <nav className="bg-white">
-        <div className="max-w-7xl mx-auto py-4 px-6 grid grid-cols-2 md:hidden">
+    <div>
+      <nav className="bg-white md:hidden">
+        <div className="max-w-7xl mx-auto py-4 px-6 grid grid-cols-2">
           <div className="flex items-center">
             <Link href={`/admin`} className="text-md sm:text-lg text-tertiary brightness-75 font-bold font-manrope uppercase tracking-widest">Management Console</Link>
           </div>
@@ -76,11 +76,9 @@ export default function AdminSideBar({ onSignOut }: props) {
         </div>
       </nav>
 
-      {isMobile ? (
-        <div onClick={toggleOffcanvas} className={`fixed z-40 top-0 bottom-0 left-0 right-0 backdrop-blur-xl bg-black/50 transition duration-300 ${offcanvas ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`} />
-      ) : <></>}
+      <div onClick={toggleOffcanvas} className={`${isMobile ? "fixed" : "hidden"} z-40 left-0 right-0 top-0 bottom-0 bg-black/15 backdrop-blur-sm transition duration-300 ${offcanvas ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`} />
 
-      <aside className={`w-76 bg-white ${isMobile ? "fixed z-50 left-0 top-0 bottom-0 transition duration-300" : "block"} transition duration-300 ${offcanvas ? "-translate-x-0" : "-translate-x-full"}`}>
+      <aside className={`w-76 bg-white ${isMobile ? "fixed" : "block"} z-50 left-0 right-0 top-0 bottom-0 transition duration-300 ${offcanvas ? "translate-x-0" : "-translate-x-full"}`}>
         <div className="flex flex-col min-h-screen">
           <div className="p-4 flex justify-end items-center block md:hidden">
             <button onClick={toggleOffcanvas}>
@@ -119,6 +117,6 @@ export default function AdminSideBar({ onSignOut }: props) {
         </div>
       </aside>
 
-    </>
+    </div>
   )
 }
