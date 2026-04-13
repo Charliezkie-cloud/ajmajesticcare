@@ -78,7 +78,7 @@ export default function AdminSideBar({ onSignOut }: props) {
 
       <div onClick={toggleOffcanvas} className={`${isMobile ? "fixed" : "hidden"} z-40 left-0 right-0 top-0 bottom-0 bg-black/15 backdrop-blur-sm transition duration-300 ${offcanvas ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`} />
 
-      <aside className={`w-76 bg-white ${isMobile ? "fixed" : "block"} z-50 left-0 right-0 top-0 bottom-0 transition duration-300 ${offcanvas ? "translate-x-0" : "-translate-x-full"}`}>
+      <aside className={`w-76 bg-white md:rounded-br-2xl md:shadow-md ${isMobile ? "fixed" : "block"} z-50 left-0 right-0 top-0 bottom-0 transition duration-300 ${offcanvas ? "translate-x-0" : "-translate-x-full"}`}>
         <div className="flex flex-col min-h-screen">
           <div className="p-4 flex justify-end items-center block md:hidden">
             <button onClick={toggleOffcanvas}>

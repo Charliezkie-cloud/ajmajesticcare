@@ -12,6 +12,7 @@ import { getTotalReviews } from "@/lib/services/reviews.services";
 import Link from "next/link";
 import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
+import Accordion from "@/components/ui/Accordion";
 
 export default function AdminHomePage() {
   const router = useRouter();
@@ -126,59 +127,61 @@ export default function AdminHomePage() {
       <h1 className="font-manrope font-bold text-primary uppercase tracking-widest mb-6">Dashboard Overview</h1>
 
       {/* Cards section */}
-      <section>
-        <div className="grid grid-rows-4 grid-cols-none sm:grid-cols-2 sm:grid-rows-2 md:grid-cols-4 md:grid-rows-none gap-4 mb-4 md:mb-6">
+      <section className="mb-4 md:mb-6">
+        <Accordion isOpenByDefault={true} heading="Totals" className="overflow-auto h-96 md:h-auto">
+          <div className="grid grid-rows-4 grid-cols-none sm:grid-cols-2 sm:grid-rows-2 md:grid-cols-4 md:grid-rows-none gap-4">
 
-          {[
-            {
-              title: "Total Contacts",
-              href: "/admin/contacts",
-              icon: (
-                <div className="bg-primary/10 p-3 rounded-full mb-auto">
-                  <LuMail className="text-primary size-6 md:size-8" />
-                </div>
-              ),
-              data: totalContacts
-            },
-            {
-              title: "Total Applicants",
-              href: "/admin/careers",
-              icon: (
-                <div className="bg-secondary/10 p-3 rounded-full mb-auto">
-                  <LuUserPlus className="text-secondary size-6 md:size-8" />
-                </div>
-              ),
-              data: totalCareers
-            },
-            {
-              title: "Total Reviews",
-              href: "/admin/reviews",
-              icon: (
-                <div className="bg-tertiary/10 p-3 rounded-full mb-auto">
-                  <LuStar className="text-tertiary size-6 md:size-8" />
-                </div>
-              ),
-              data: totalReviews
-            },
-            {
-              title: "Pending Consultations",
-              href: "/admin/contacts",
-              icon: (
-                <div className="bg-red-500/10 p-3 rounded-full mb-auto">
-                  <LuCalendarClock className="text-red-500 size-6 md:size-8" />
-                </div>
-              ),
-              data: totalPendingContacts
-            },
-          ].map((item, index) => (
-            <div key={`total-card-${index}`} onClick={() => router.push(item.href)} className="bg-white hover:bg-transparent active:bg-gray-100 cursor-pointer p-4 rounded-2xl shadow-lg flex flex-col items-center justify-center gap-6">
-              {item.icon}
-              <h2 className="font-manrope text text-black font-bold text-2xl sm:text-2xl">{item.data}</h2>
-              <p className="text-sm md:text-base text-center font-semibold">{item.title}</p>
-            </div>
-          ))}
+            {[
+              {
+                title: "Total Contacts",
+                href: "/admin/contacts",
+                icon: (
+                  <div className="bg-primary/10 p-3 rounded-full mb-auto">
+                    <LuMail className="text-primary size-6 md:size-8" />
+                  </div>
+                ),
+                data: totalContacts
+              },
+              {
+                title: "Total Applicants",
+                href: "/admin/careers",
+                icon: (
+                  <div className="bg-secondary/10 p-3 rounded-full mb-auto">
+                    <LuUserPlus className="text-secondary size-6 md:size-8" />
+                  </div>
+                ),
+                data: totalCareers
+              },
+              {
+                title: "Total Reviews",
+                href: "/admin/reviews",
+                icon: (
+                  <div className="bg-tertiary/10 p-3 rounded-full mb-auto">
+                    <LuStar className="text-tertiary size-6 md:size-8" />
+                  </div>
+                ),
+                data: totalReviews
+              },
+              {
+                title: "Pending Consultations",
+                href: "/admin/contacts",
+                icon: (
+                  <div className="bg-red-500/10 p-3 rounded-full mb-auto">
+                    <LuCalendarClock className="text-red-500 size-6 md:size-8" />
+                  </div>
+                ),
+                data: totalPendingContacts
+              },
+            ].map((item, index) => (
+              <div key={`total-card-${index}`} onClick={() => router.push(item.href)} className="bg-white hover:bg-gray-100 active:bg-gray-200 cursor-pointer p-4 rounded-2xl shadow flex flex-col items-center justify-center gap-6">
+                {item.icon}
+                <h2 className="font-manrope text text-black font-bold text-2xl sm:text-2xl">{item.data}</h2>
+                <p className="text-sm md:text-base text-center font-semibold">{item.title}</p>
+              </div>
+            ))}
 
-        </div>
+          </div>
+        </Accordion>
       </section>
 
 
@@ -227,7 +230,7 @@ export default function AdminHomePage() {
           <div className="md:col-span-2 p-6 bg-white shadow-lg rounded-2xl">
             <h2 className="font-semibold text-lg sm:text-xl mb-6">Recent Careers</h2>
 
-            <div className="overflow-y-auto">
+            <div className="overflow-x-auto overflow-y-auto">
               <div className="h-96">
                 <div className="flex flex-col gap-2">
 

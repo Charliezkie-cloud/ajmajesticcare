@@ -1,18 +1,31 @@
 "use client"
 
-import { ReactNode, useRef, useState } from "react"
+import { ReactNode, useEffect, useRef, useState } from "react"
 import { LuChevronDown } from "react-icons/lu"
 
 type props = {
+  isOpenByDefault?: boolean;
   heading?: string;
+  className?: string;
   children?: ReactNode;
 }
 
-export default function Accordion({ heading, children }: props) {
+export default function Accordion({ isOpenByDefault = false, heading, className, children }: props) {
   const [open, setOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  function toggleAccordion() { setOpen(!open); }
+  function toggleAccordion() {
+    setOpen(!open);
+  }
+
+  useEffect(() => {
+    function openAccordion() {
+      setOpen(true);
+    }
+
+    if (isOpenByDefault)
+      openAccordion();
+  }, [isOpenByDefault]);
 
   return (
     <div className="bg-white p-6 rounded-2xl shadow-xl space-y-2">
@@ -33,7 +46,7 @@ export default function Accordion({ heading, children }: props) {
         aria-labelledby={`accordion-heading-${heading}`}
         className={`overflow-hidden transition-all duration-300 ${open ? "max-h-96" : "max-h-0"}`}
       >
-        <div ref={contentRef} className="p-4">
+        <div ref={contentRef} className={`p-4 ${className}`}>
           {children}
         </div>
       </div>
