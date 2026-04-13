@@ -1,4 +1,4 @@
-import { LuBriefcaseBusiness, LuContact, LuHouse, LuMenu, LuNotebookPen, LuPowerOff, LuX } from "react-icons/lu";
+import { LuBriefcaseBusiness, LuContact, LuHouse, LuMenu, LuNotebookPen, LuPowerOff, LuSettings, LuX } from "react-icons/lu";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -66,7 +66,7 @@ export default function AdminSideBar({ onSignOut }: props) {
       <nav className="bg-white md:hidden">
         <div className="max-w-7xl mx-auto py-4 px-6 grid grid-cols-2">
           <div className="flex items-center">
-            <Link href={`/admin`} className="text-md sm:text-lg text-tertiary brightness-75 font-bold font-manrope uppercase tracking-widest">Management Console</Link>
+            <Link href={`/admin`} className="text-md sm:text-lg text-tertiary brightness-75 font-bold font-manrope">Management Console</Link>
           </div>
           <div className="flex items-center justify-end">
             <button onClick={toggleOffcanvas}>
@@ -99,7 +99,7 @@ export default function AdminSideBar({ onSignOut }: props) {
                 const isActive = pathname === link.href
 
                 return (
-                  <li key={`link-item-${index}`} className={`${isActive ? "text-primary bg-gray-100" : ""} text-sm md:text-base hover:bg-gray-100 rounded-xl font-semibold px-3 py-2`}>
+                  <li key={`link-item-${index}`} onClick={toggleOffcanvas} className={`${isActive ? "text-primary bg-gray-100" : ""} text-sm md:text-base hover:bg-gray-100 rounded-xl font-semibold px-3 py-2`}>
                     <Link href={link.href} className="flex flex-row gap-2 items-center">{link.icon} {link.title}</Link>
                   </li>
                 )
@@ -110,9 +110,16 @@ export default function AdminSideBar({ onSignOut }: props) {
 
           {/* Footer */}
           <div className="mt-auto p-4 border-t border-t-gray-200">
-            <Button className="w-full flex items-center gap-2 opacity-75" variant="ghost" size="auto" onClick={onSignOut}>
-              <LuPowerOff className="size-5" /> Logout
-            </Button>
+            <div onClick={toggleOffcanvas}>
+              <Button className="w-full flex items-center gap-2 opacity-75" variant="ghost" size="auto" href="/admin/settings">
+                <LuSettings className="size-5" /> Settings
+              </Button>
+            </div>
+            <div onClick={toggleOffcanvas}>
+              <Button className="w-full flex items-center gap-2 opacity-75" variant="ghost" size="auto" onClick={onSignOut}>
+                <LuPowerOff className="size-5" /> Logout
+              </Button>
+            </div>
           </div>
         </div>
       </aside>
