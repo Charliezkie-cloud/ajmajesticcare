@@ -2,10 +2,11 @@ import { ReviewFormFields } from "@/components/forms/ReviewForm";
 import { sendMail } from "@/lib/services/nodemailer.services";
 import { readFileSync } from "fs";
 import { NextRequest, NextResponse } from "next/server";
-import sanitize from "@/lib/misc/sanitizer";
-import path from "path";
 import { getAllPublicReviews, insertReview } from "@/lib/services/reviews.services";
 import { Review } from "@/lib/types/table.types";
+
+import sanitize from "@/lib/misc/sanitizer";
+import path from "path";
 
 const RECEIVER_EMAIL = process.env.NEXT_RECEIVER_EMAIL!;
 if (!RECEIVER_EMAIL) throw new Error("NEXT_RECEIVER_EMAIL is not defined");
