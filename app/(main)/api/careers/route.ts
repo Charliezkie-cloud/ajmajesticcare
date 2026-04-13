@@ -17,7 +17,11 @@ const PHONE_REGEX = /^\+?[0-9\s\-().]{7,20}$/;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const NAME_REGEX = /^[a-zA-ZÀ-ÖØ-öø-ÿ\s'\-.]+$/;
 
-// ========== VALIDATE FORM BODY ==========
+/**
+ * Validate career form fields
+ * @param {Partial<CareerFormFields>} data 
+ * @returns {string | null}
+ */
 function validateFormBody(data: Partial<CareerFormFields>): string | null {
   const full_name = data.full_name?.trim() ?? "";
   if (!full_name)
@@ -62,7 +66,11 @@ function validateFormBody(data: Partial<CareerFormFields>): string | null {
   return null;
 }
 
-// ========== POST METHOD ==========
+/**
+ * Post method
+ * @param {NextResponse} req 
+ * @returns {NextResponse}
+ */
 export async function POST(req: NextRequest) {
   if (!req.headers.get("content-type")?.includes("application/json"))
     return NextResponse.json({ message: "Content-Type must be application/json." }, { status: 415 });

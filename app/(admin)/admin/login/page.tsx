@@ -79,7 +79,9 @@ export default function AdminLoginPage() {
     router.push("/admin");
   }
 
-  // ========== GET CURRENT USER ==========
+  /**
+   * Get current user
+   */
   useEffect(() => {
     async function getUser() {
       const { data: { user } } = await supabase.auth.getUser();
@@ -92,7 +94,9 @@ export default function AdminLoginPage() {
     getUser();
   }, []);
 
-  // ========== CHECK IF LOGGED IN ==========
+  /**
+   * Check if logged in
+   */
   useEffect(() => {
     if (!isLoading && user) return router.push("/admin");
   }, [isLoading, user, router]);

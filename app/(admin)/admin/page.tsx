@@ -35,11 +35,15 @@ export default function AdminHomePage() {
     router.push("/admin/login");
   }
 
-  // ========== GET TOTAL ROWS OF EACH TABLES ==========
+  /**
+   * Get total rows of each tables
+   */
   useEffect(() => {
     if (!isLoading && !user) return router.push("/admin/login");
 
-    // ===== FETCH TOTAL CONTACTS =====
+    /**
+     * Fetch total contacts
+     */
     async function fetchTotalContacts() {
       try {
         const count = await getTotalContacts();
@@ -50,7 +54,9 @@ export default function AdminHomePage() {
       }
     }
 
-    // ===== FETCH TOTAL PENDING CONTACTS =====
+    /**
+     * Fetch total pending contacts
+     */
     async function fetchTotalPendingContacts() {
       try {
         const count = await getTotalPendingContacts();
@@ -61,7 +67,9 @@ export default function AdminHomePage() {
       }
     }
 
-    // ==== FETCH RECENT CONTACTS ====
+    /**
+     * Fetch recent contacts
+     */
     async function fetchRecentContacts() {
       try {
         const res = await getRecentContacts();
@@ -72,7 +80,9 @@ export default function AdminHomePage() {
       }
     }
 
-    // ==== FETCH TOTAL CAREERS ====
+    /**
+     * Fetch total careers
+     */
     async function fetchTotalCareers() {
       try {
         const res = await getTotalCareers();
@@ -83,7 +93,9 @@ export default function AdminHomePage() {
       }
     }
 
-    // ==== FETCH RECENT CAREERS ====
+    /**
+     * Fetch recent careers
+     */
     async function fetchRecentCareers() {
       try {
         const res = await getRecentCareers();
@@ -104,7 +116,9 @@ export default function AdminHomePage() {
     fetchRecentCareers();
   }, [isLoading, user, router]);
 
-  // ========== GET CURRENT USER ==========
+  /**
+   * Get current user
+   */
   useEffect(() => {
     async function getUser() {
       const { data: { user } } = await supabase.auth.getUser();
@@ -117,7 +131,9 @@ export default function AdminHomePage() {
     getUser();
   }, []);
 
-  // ========== CHECK IF LOGGED IN ==========
+  /**
+   * Check if logged in
+   */
   useEffect(() => {
     if (!isLoading && !user) return router.push("/admin/login");
   }, [isLoading, user, router]);
@@ -138,7 +154,7 @@ export default function AdminHomePage() {
       <div className="md:flex-1 p-4 sm:p-6 md:p-8">
         <h1 className="font-manrope font-bold text-primary uppercase tracking-widest mb-6">Dashboard Overview</h1>
 
-        {/* CARDS */}
+        {/* Cards */}
         <div className="grid grid-rows-4 grid-cols-none sm:grid-cols-2 sm:grid-rows-2 md:grid-cols-4 md:grid-rows-none gap-4 mb-4 md:mb-6">
 
           {[

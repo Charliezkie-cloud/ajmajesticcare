@@ -1,3 +1,8 @@
+/**
+ * Sanitize a string
+ * @param {string} str
+ * @returns {string}
+ */
 export default function sanitize(str: string): string {
   if (!str) return "";
 

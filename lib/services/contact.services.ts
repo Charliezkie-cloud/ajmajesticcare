@@ -1,7 +1,10 @@
 import { supabase } from "../supabase/supabase.client";
 import { Contact, ContactInsert } from "../types/table.types";
 
-// ========== GET TOTAL CONTACTS ==========
+/**
+ * Get all contacts
+ * @returns {Promise<Contact[]>}
+ */
 export async function getAllContacts(): Promise<Contact[]> {
   const { data, error } = await supabase
     .from("contacts")
@@ -12,20 +15,28 @@ export async function getAllContacts(): Promise<Contact[]> {
   return data;
 }
 
-// ========== GET RECENT CONTACTS ==========
-export async function getRecentContacts(): Promise<Contact[]> {
+/**
+ * Get recent contacts
+ * @param {number} limit = 10
+ * @returns {Promise<Contact[]>}
+ */
+export async function getRecentContacts(limit = 10): Promise<Contact[]> {
   const { data, error } = await supabase
     .from("contacts")
     .select("*")
     .order("created_at", { ascending: false })
-    .limit(10);
+    .limit(limit);
 
   if (error) throw new Error(error.message);
 
   return data;
 }
 
-// ========== INSERT CONTACT ==========
+/**
+ * Insert contact
+ * @param {ContactInsert} dataToInsert
+ * @returns {Promise<Boolean>}
+ */
 export async function insertContact(dataToInsert: ContactInsert): Promise<boolean> {
   const { error } = await supabase
     .from("contacts")
@@ -36,7 +47,10 @@ export async function insertContact(dataToInsert: ContactInsert): Promise<boolea
   return true;
 }
 
-// ========== GET TOTAL CONTACTS ==========
+/**
+ * Get total contacts
+ * @returns {Promise<number | null>}
+ */
 export async function getTotalContacts(): Promise<number | null> {
   const { count, error } = await supabase
     .from("contacts")
@@ -47,7 +61,10 @@ export async function getTotalContacts(): Promise<number | null> {
   return count;
 }
 
-// ========== GET TOTAL PENDING CONTACTS ==========
+/**
+ * Get total pending contacts
+ * @returns {Promise<number | null>}
+ */
 export async function getTotalPendingContacts(): Promise<number | null> {
   const { count, error } = await supabase
     .from("contacts")

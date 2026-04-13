@@ -1,7 +1,10 @@
 import { supabase } from "../supabase/supabase.client";
 import { Career, CareerInsert } from "../types/table.types";
 
-// ========== GET ALL CAREERS ==========
+/**
+ * Get all careers
+ * @returns {Promise<Career[]>}
+ */
 export async function getAllCareers(): Promise<Career[]> {
   const { data, error } = await supabase
     .from("careers")
@@ -12,7 +15,10 @@ export async function getAllCareers(): Promise<Career[]> {
   return data;
 }
 
-// ========== GET RECENT CAREERS ==========
+/**
+ * Get recent careers
+ * @returns {Promise<Career[]>}
+ */
 export async function getRecentCareers(): Promise<Career[]> {
   const { data, error } = await supabase
     .from("careers")
@@ -25,7 +31,11 @@ export async function getRecentCareers(): Promise<Career[]> {
   return data;
 }
 
-// ========== INSERT CAREER ==========
+/**
+ * Insert career
+ * @param {CareerInsert} dataToInsert
+ * @returns {Promise<boolean>}
+ */
 export async function insertCareer(dataToInsert: CareerInsert): Promise<boolean> {
   const { error } = await supabase
     .from("careers")
@@ -36,7 +46,10 @@ export async function insertCareer(dataToInsert: CareerInsert): Promise<boolean>
   return true;
 }
 
-// ========== GET TOTAL CAREERS ==========
+/**
+ * Get total careers
+ * @returns {Promise<number | null>}
+ */
 export async function getTotalCareers(): Promise<number | null> {
   const { count, error } = await supabase
     .from("careers")

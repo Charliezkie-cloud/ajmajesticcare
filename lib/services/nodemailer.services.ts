@@ -9,7 +9,13 @@ export const transporter = nodemailer.createTransport({
   }
 })
 
-export async function sendMail(subject: string, to: string, html: string) {
+/**
+ * Send email using gmail
+ * @param {string} subject 
+ * @param {string} to 
+ * @param {string} html
+ */
+export async function sendMail(subject: string, to: string, html: string): Promise<void> {
   const sanitizedEmail = sanitize(to);
 
   try {

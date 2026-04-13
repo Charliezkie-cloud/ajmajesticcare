@@ -5,7 +5,7 @@ import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
 
-export type ContactFormState = {
+export type ContactFormFields = {
   full_name: string;
   phone_number: string;
   email_address: string;
@@ -13,11 +13,11 @@ export type ContactFormState = {
   comments: string;
 };
 
-type FormErrors = Partial<Record<keyof Omit<ContactFormState, "comments">, string>>;
+type FormErrors = Partial<Record<keyof Omit<ContactFormFields, "comments">, string>>;
 
 type SubmitStatus = "idle" | "loading" | "success" | "error";
 
-const initialFormState: ContactFormState = {
+const initialFormState: ContactFormFields = {
   full_name: "",
   phone_number: "",
   email_address: "",
@@ -28,7 +28,7 @@ const initialFormState: ContactFormState = {
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const ZIP_REGEX = /^\d{4,10}$/;
 
-function validateForm(formState: ContactFormState): FormErrors {
+function validateForm(formState: ContactFormFields): FormErrors {
   const errors: FormErrors = {};
 
   if (!formState.full_name.trim())
@@ -53,7 +53,7 @@ function validateForm(formState: ContactFormState): FormErrors {
 }
 
 export default function ContactForm() {
-  const [form, setForm] = useState<ContactFormState>(initialFormState);
+  const [form, setForm] = useState<ContactFormFields>(initialFormState);
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<SubmitStatus>("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");

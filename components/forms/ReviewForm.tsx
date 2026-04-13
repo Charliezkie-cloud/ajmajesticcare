@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { LuStar } from "react-icons/lu";
 
-export type ReviewFormData = {
+export type ReviewFormFields = {
   fullName: string;
   rating: number | string;
   comment: string;
@@ -18,12 +18,12 @@ export default function ReviewForm({ onClose }: ReviewFormProps) {
   const [rating, setRating] = useState(0);
   const [hoveredRating, setHoveredRating] = useState(0);
   const [comment, setComment] = useState("");
-  const [errors, setErrors] = useState<Partial<ReviewFormData>>({});
+  const [errors, setErrors] = useState<Partial<ReviewFormFields>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitErrMessage, setSubmitErrMessage] = useState("");
 
   const validate = (): boolean => {
-    const newErrors: Partial<ReviewFormData> = {};
+    const newErrors: Partial<ReviewFormFields> = {};
 
     if (!fullName.trim()) newErrors.fullName = "Full name is required.";
     if (rating < 1 || rating > 5) newErrors.rating = "Please select a rating.";

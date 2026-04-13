@@ -1,4 +1,4 @@
-import { ContactFormState } from "@/components/forms/ContactForm";
+import { ContactFormFields } from "@/components/forms/ContactForm";
 import { NextRequest, NextResponse } from "next/server";
 import { sendMail } from "@/lib/services/nodemailer.services";
 import { readFileSync } from "node:fs";
@@ -16,8 +16,12 @@ const template = readFileSync(contactTemplatePath, "utf-8"); // cached at module
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const ZIP_REGEX = /^\d{4,10}$/;
 
-// ========== VALIDATE FORM BODY ==========
-function validateFormBody(formState: ContactFormState): string | boolean {
+/**
+ * Validate contact form fields
+ * @param {ContactFormFields} formState
+ * @returns {string | boolean}
+ */
+function validateFormBody(formState: ContactFormFields): string | boolean {
   if (!formState.full_name.trim())
     return "Full name is required.";
   else if (formState.full_name.trim().length < 2)
@@ -42,9 +46,13 @@ function validateFormBody(formState: ContactFormState): string | boolean {
   return true;
 }
 
-// ========== POST METHOD ==========
+/**
+ * Post method
+ * @param {NextRequest} req 
+ * @returns {NextResponse}
+ */
 export async function POST(req: NextRequest) {
-  let data: ContactFormState;
+  let data: ContactFormFields;
 
   try {
     data = await req.json();
