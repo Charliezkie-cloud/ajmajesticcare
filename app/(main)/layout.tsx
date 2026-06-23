@@ -7,6 +7,7 @@ import UtilityBar from "@/components/layout/UtilityBar";
 import Navbar from "@/components/layout/Navbar";
 import HeaderHeightProvider from "@/components/layout/HeaderHeightProvider";
 import Footer from "@/components/layout/Footer";
+import AnnouncementBar from "@/components/layout/AnnouncementBar";
 
 const manrope = Manrope({
   variable: "--font-sans-manrope",
@@ -207,6 +208,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
       <body className={`${manrope.variable} ${inter.variable} ${playwriteIreland.variable} h-full antialiased`} style={{ background: "#FCF8FF", color: "#4C4356" }}>
         <HeaderHeightProvider>
+          <AnnouncementBar className="sticky top-0 z-40" />
           <UtilityBar className="sticky top-0 z-40" />
           <Navbar />
         </HeaderHeightProvider>
